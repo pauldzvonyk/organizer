@@ -8,3 +8,5 @@ class Task(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField()
     date_created = models.DateTimeField(timezone.now())
+    priority = models.IntegerField(default=0)
+    completed = models.BooleanField(default=False)
