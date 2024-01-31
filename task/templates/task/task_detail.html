@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'task/base.html' %}
+{% block content %}
+
+
 <h1>{{ task.title }}</h1>
 <small>By: {{ task.author.first_name }}<br>
 Created on {{ task.date_created }}</small>
@@ -15,5 +12,6 @@ Created on {{ task.date_created }}</small>
 </p>
 <br><br><br>
 <a href="{% url 'home' %}">Back</a>
-</body>
-</html>
+
+
+{% endblock %}

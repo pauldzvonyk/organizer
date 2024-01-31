@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'task/base.html' %}
+{% block content %}
+
 <h1>This is the main.html page</h1>
 <h2>All our tasks.</h2>
 <ul>
@@ -20,5 +16,5 @@
     </li>
 {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}
