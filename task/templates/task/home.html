@@ -9,10 +9,14 @@
 <h2>All our tasks.</h2>
 <ul>
 {% for task in object_list %}
-    <li>{{ task.title }} - (Published by: "{{ task.author.first_name }}
-        {{ task.author.last_name }}")<br>
-        {{ task.short_description }}<br>
+    <li>
+        <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
+        - (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
+        <br>
+        {{ task.short_description }}
+        <br>
         {{ task.date_created }}
+        <hr>
     </li>
 {% endfor %}
 </ul>

@@ -9,3 +9,9 @@ from . models import Task
 class HomeView(ListView):
     model = Task
     template_name = 'task/home.html'
+
+
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'task/task_detail.html'
+
