@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>This is the main.html page</h1>
+<h1>This is the main.html page</h1>
+<h2>All our tasks.</h2>
+<ul>
+{% for task in object_list %}
+    <li>{{ task.title }} - (Published by: "{{ task.author.first_name }}
+        {{ task.author.last_name }}")<br>
+        {{ task.short_description }}<br>
+        {{ task.date_created }}
+    </li>
+{% endfor %}
+</ul>
 </body>
 </html>
