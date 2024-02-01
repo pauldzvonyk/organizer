@@ -1,16 +1,20 @@
 {% extends 'task/base.html' %}
+{% block title %} Task Details {% endblock %}
 {% block content %}
 
 
 <h1>{{ task.title }}</h1>
-<small>By: {{ task.author.first_name }}<br>
-Created on {{ task.date_created }}</small>
+<small>
+    By: {{ task.author.first_name }}
+    <br>
+    Created on {{ task.date_created }}
+</small>
 <br>
 <hr>
 <p>
     {{ task.short_description }}
 </p>
 <br><br><br>
-<a href="{% url 'home' %}" class="btn btn-success">Back</a>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 
 {% endblock %}
