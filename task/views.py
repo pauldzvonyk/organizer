@@ -1,6 +1,7 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from . models import Task
+from .forms import TaskForm
 
 
 # def home(request):
@@ -17,6 +18,7 @@ class TaskDetailView(DetailView):
 
 class AddTaskView(CreateView):
     model = Task
+    form_class = TaskForm
     template_name = 'task/add_task.html'
     # fields = '__all__'
-    fields = ('title', 'author', 'short_description', 'priority')
+    #fields = ('title', 'author', 'short_description', 'priority')
