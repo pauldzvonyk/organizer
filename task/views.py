@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from . models import Task
 
 
@@ -15,3 +15,7 @@ class TaskDetailView(DetailView):
     model = Task
     template_name = 'task/task_detail.html'
 
+class AddTaskView(CreateView):
+    model = Task
+    template_name = 'task/add_task.html'
+    fields = '__all__'
