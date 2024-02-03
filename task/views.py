@@ -18,4 +18,5 @@ class TaskDetailView(DetailView):
 class AddTaskView(CreateView):
     model = Task
     template_name = 'task/add_task.html'
-    fields = '__all__'
+    # fields = '__all__'
+    fields = ('title', 'author', 'short_description', 'priority')
