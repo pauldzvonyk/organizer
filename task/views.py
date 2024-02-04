@@ -1,7 +1,8 @@
 #from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from . models import Task
 from .forms import TaskForm, EditForm
+from django.urls import reverse_lazy
 
 
 # def home(request):
@@ -31,3 +32,9 @@ class EditTaskView(UpdateView):
     # no need to define form_class, as it has already been taken care of with UpdateView
     template_name = 'task/edit_task.html'
     #fields = ('title', 'title_tag', 'short_description', 'date_created', 'priority', 'completed')
+
+
+class DeleteTaskView(DeleteView):
+    model = Task
+    template_name = 'task/delete_task.html'
+    success_url = reverse_lazy('home')

@@ -1,0 +1,17 @@
+{% extends 'task/base.html' %}
+{% block title %} Edit task {% endblock %}
+{% block content %}
+
+
+<h1>Are you sure that you want to delete: {{ object }}?</h1>
+
+<div class="form-group">
+    <form method="POST" class="submit_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Back</a>
+        <button type="submit" value="Confirm Delete" class="btn btn-secondary">Delete</button>
+    </form>
+</div>
+
+{% endblock %}
