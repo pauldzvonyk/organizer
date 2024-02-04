@@ -11,8 +11,9 @@
         {{ form.as_p }}
         <a href="{% url 'home' %}" class="btn btn-secondary">Discard Changes</a>
         <button class="btn btn-secondary">Update</button>
+        <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
     </form>
 </div>
-<a href="{% url 'delete_task' task.pk %}">Delete Task</a>
+
 
 {% endblock %}

@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 class HomeView(ListView):
     model = Task
     template_name = 'task/home.html'
+    ordering = ['-date_created']
 
 
 class TaskDetailView(DetailView):

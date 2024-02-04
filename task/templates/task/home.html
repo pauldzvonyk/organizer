@@ -26,6 +26,7 @@
         {{ task.short_description }}
         <br>
         {{ task.date_created }} <a href="{% url 'edit_task' task.pk %}">Edit</a>
+        <a href="{% url 'delete_task' task.pk %}">Delete</a>
         <hr>
     </li>
 {% endfor %}
