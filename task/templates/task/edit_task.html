@@ -3,6 +3,8 @@
 {% block content %}
 
 
+{% if user.is_authenticated %}
+
 <h1>Update Your Task</h1><small>created on {{ task.date_created }}</small>
 
 <div class="form-group">
@@ -14,6 +16,10 @@
         <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete Task</a>
     </form>
 </div>
+{% else %}
 
+You're not allowed here, and you know it!...
+
+{% endif %}
 
 {% endblock %}

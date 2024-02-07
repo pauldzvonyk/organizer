@@ -3,6 +3,8 @@
 {% block content %}
 
 
+{% if user.is_authenticated %}
+
 <h1>Are you sure that you want to delete: {{ task.title }}?</h1>
 
 <div class="form-group">
@@ -13,5 +15,11 @@
         <button class="btn btn-secondary">Delete</button>
     </form>
 </div>
+
+{% else %}
+
+You're not allowed here, and you know it!...
+
+{% endif %}
 
 {% endblock %}

@@ -3,6 +3,8 @@
 {% block content %}
 
 
+{% if user.is_authenticated %}
+
 <h1>{{ task.title }}</h1>
 <small>
     By: {{ task.author.first_name }}
@@ -16,8 +18,9 @@
 </p>
 <br><br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-{% if user.is_authenticated %}
 <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
 <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
+
 {% endif %}
+
 {% endblock %}
