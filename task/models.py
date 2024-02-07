@@ -4,6 +4,16 @@ from django.utils import timezone
 from django.urls import reverse
 
 
+class Category(models.Model):
+    category_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.category_name
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+
 class Task(models.Model):
     title = models.CharField(max_length=200)
     title_tag = models.CharField(max_length=200)
@@ -11,6 +21,7 @@ class Task(models.Model):
     short_description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField(default=0)
+    category = models.CharField(max_length=200, default='uncategorized')
     completed = models.BooleanField(default=False)
 
     def __str__(self):
