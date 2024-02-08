@@ -1,8 +1,9 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task, Category
 from .forms import TaskForm, EditForm
 from django.urls import reverse_lazy
+
 
 # def home(request):
 #     return render(request, 'task/home.html', {})
@@ -31,6 +32,11 @@ class AddCategoryView(CreateView):
     template_name = 'task/add_category.html'
     fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'priority')
+
+
+def CategoryView(request, cats):
+    category_tasks = Task.objects.filter(category=cats)
+    return render(request, 'task/categories.html', {'cats': cats.title(), 'category_tasks': category_tasks})
 
 
 class EditTaskView(UpdateView):
