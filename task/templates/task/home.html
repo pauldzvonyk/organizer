@@ -24,7 +24,8 @@
 {% for task in object_list %}
     <li>
         <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
-        - (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
+        Category: - "{{ task.category }}" <br>
+        (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
         <br>
         {{ task.short_description|slice:":150"}}
         <br>

@@ -32,6 +32,9 @@
                     <a class="nav-link" href="{% url 'add_task' %}">Add Task</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" onclick="logout()">Logout</a>
                     <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
                         {% csrf_token %}
