@@ -35,8 +35,8 @@ class AddCategoryView(CreateView):
 
 
 def CategoryView(request, cats):
-    category_tasks = Task.objects.filter(category=cats)
-    return render(request, 'task/categories.html', {'cats': cats.title(), 'category_tasks': category_tasks})
+    category_tasks = Task.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'task/categories.html', {'cats': cats.title().replace('-', ' '), 'category_tasks': category_tasks})
 
 
 class EditTaskView(UpdateView):
