@@ -43,9 +43,19 @@ class AddCategoryView(CategoryMixin, CreateView):
     # fields = ('title', 'author', 'short_description', 'priority')
 
 
-def CategoryView(request, cats):
-    category_tasks = Task.objects.filter(category=cats.replace('-', ' '))
-    return render(request, 'task/categories.html', {'cats': cats.title().replace('-', ' '), 'category_tasks': category_tasks})
+class CategoryView(CategoryMixin, ListView):
+    template_name = 'task/categories.html'
+    context_object_name = 'category_tasks'
+
+    def get_queryset(self):
+        cats = self.kwargs['cats']
+        return Task.objects.filter(category=cats.replace('-', ' '))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cats = self.kwargs['cats']
+        context['cats'] = cats.title().replace('-', ' ')
+        return context
 
 
 class EditTaskView(CategoryMixin, UpdateView):
