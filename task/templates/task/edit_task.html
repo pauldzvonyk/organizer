@@ -4,6 +4,8 @@
 
 
 {% if user.is_authenticated %}
+    {% if user.id == task.author.id %}
+
 
 <h1>Update Your Task</h1><small>created on {{ task.date_created }}</small>
 
@@ -16,6 +18,9 @@
         <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete Task</a>
     </form>
 </div>
+    {% else %}
+        <h2>You're about to enter a restricted territory, someone else's tasks...!!!</h2>
+    {% endif %}
 {% else %}
 
 You're not allowed here, and you know it!...

@@ -21,7 +21,8 @@
 </div>
 <h2>All Active Tasks</h2>
 <ul>
-{% for task in object_list %}
+    {% for task in object_list %}
+    {% if user.id == task.author.id %}
     <li>
         <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
         Category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> <br>
@@ -37,7 +38,9 @@
 
         <hr>
     </li>
+    {% endif %}
     {% endfor %}
+
 </ul>
 
 {% endif %}

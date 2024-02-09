@@ -1,14 +1,10 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task, Category
 from .forms import TaskForm, EditForm
 from django.urls import reverse_lazy
 
 
-# def home(request):
-#     return render(request, 'task/home.html', {})
-
-
+"""CategoryMixin class is necessary to view DYNAMIC category dropdown menu in a navbar"""
 class CategoryMixin:
     def get_context_data(self, *args, **kwargs):
         cat_list = Category.objects.all()

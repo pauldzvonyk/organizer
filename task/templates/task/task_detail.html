@@ -4,6 +4,8 @@
 
 
 {% if user.is_authenticated %}
+{% if user.id == task.author.id %}
+
 
 <h1>{{ task.title }}</h1>
 <small>
@@ -20,7 +22,9 @@
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
 <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
-
+{% else %}
+<h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>
+{% endif %}
 {% endif %}
 
 {% endblock %}

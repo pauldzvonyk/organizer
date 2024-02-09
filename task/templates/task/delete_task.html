@@ -4,6 +4,8 @@
 
 
 {% if user.is_authenticated %}
+    {% if user.id == task.author.id %}
+
 
 <h1>Are you sure that you want to delete: {{ task.title }}?</h1>
 
@@ -15,7 +17,9 @@
         <button class="btn btn-secondary">Delete</button>
     </form>
 </div>
-
+    {% else %}
+        <h2>This is a restricted territory, you are not allowed here!!!</h2>
+    {% endif %}
 {% else %}
 
 You're not allowed here, and you know it!...

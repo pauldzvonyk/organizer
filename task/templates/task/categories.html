@@ -8,6 +8,8 @@
 
 <ul>
     {% for task in category_tasks %}
+        {% if user.id == task.author.id %}
+
     <li>
         <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a><br>
         (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
@@ -22,6 +24,7 @@
 
         <hr>
     </li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% else %}
