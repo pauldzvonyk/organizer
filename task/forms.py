@@ -17,7 +17,7 @@ class TaskForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'js_tweek_id', 'type': 'hidden'}),
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control',
                                                        'placeholder': 'Enter a short '
