@@ -23,6 +23,7 @@ class Task(models.Model):
     priority = models.IntegerField(default=0)
     category = models.CharField(max_length=200, default='uncategorized')
     completed = models.BooleanField(default=False)
+    likes = models.ManyToManyField(User, related_name='task_likes')
 
     def __str__(self):
         return f"{self.title} (Published by: '{self.author}' on {self.date_created})"

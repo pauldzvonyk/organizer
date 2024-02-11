@@ -1,7 +1,16 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task, Category
 from .forms import TaskForm, EditForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+
+
+
+def LikeView(request, pk):
+    task = get_object_or_404(Task, id=request.POST.get('task_id'))
+    task.likes.add(request.user)
+    return HttpResponseRedirect(reverse('task-detail', args=[str(pk)]))
 
 
 """CategoryMixin class is necessary to view DYNAMIC category dropdown menu in a navbar"""
