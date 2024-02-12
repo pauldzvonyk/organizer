@@ -25,7 +25,7 @@
 <br><br><hr><br>
 <form action="{% url 'like_task' task.pk %}" method="POST">
     {% csrf_token %}
-    <button type="submit" name="task_id" value="{{ task.id }}" class="btn btn-primary btn-sm">Like</button>
+    <button type="submit" name="task_id" value="{{ task.id }}" class="btn btn-primary btn-sm">Like</button> - {{ total_likes }} Likes
 </form>
 {% else %}
 <h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>

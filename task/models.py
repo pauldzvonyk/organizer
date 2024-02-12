@@ -25,6 +25,9 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     likes = models.ManyToManyField(User, related_name='task_likes')
 
+    def total_likes(self):
+        return self.likes.count()
+
     def __str__(self):
         return f"{self.title} (Published by: '{self.author}' on {self.date_created})"
 

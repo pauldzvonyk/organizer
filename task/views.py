@@ -32,6 +32,13 @@ class TaskDetailView(CategoryMixin, DetailView):
     model = Task
     template_name = 'task/task_detail.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        db_likes = get_object_or_404(Task, id=self.kwargs['pk'])
+        total_likes = db_likes.total_likes()
+        context['total_likes'] = total_likes
+        return context
+
 
 class AddTaskView(CategoryMixin, CreateView):
     model = Task
