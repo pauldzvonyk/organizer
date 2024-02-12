@@ -6,14 +6,21 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
 
-
 def LikeView(request, pk):
     task = get_object_or_404(Task, id=request.POST.get('task_id'))
-    task.likes.add(request.user)
+    liked = False
+    if task.likes.filter(id=request.user.id).exists():
+        task.likes.remove(request.user)
+        liked = False
+    else:
+        task.likes.add(request.user)
+        liked = True
     return HttpResponseRedirect(reverse('task-detail', args=[str(pk)]))
 
 
 """CategoryMixin class is necessary to view DYNAMIC category dropdown menu in a navbar"""
+
+
 class CategoryMixin:
     def get_context_data(self, *args, **kwargs):
         cat_list = Category.objects.all()
@@ -34,9 +41,16 @@ class TaskDetailView(CategoryMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+
         db_likes = get_object_or_404(Task, id=self.kwargs['pk'])
         total_likes = db_likes.total_likes()
+
+        liked = False
+        if db_likes.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context['total_likes'] = total_likes
+        context['liked'] = liked
         return context
 
 
