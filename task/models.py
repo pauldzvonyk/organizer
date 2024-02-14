@@ -23,6 +23,7 @@ class Task(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField(default=0)
     category = models.CharField(max_length=200, default='uncategorized')
+    snippet = models.CharField(max_length=200, default='Click on the link above to add a task.')
     completed = models.BooleanField(default=False)
     likes = models.ManyToManyField(User, related_name='task_likes')
 
