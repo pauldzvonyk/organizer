@@ -28,7 +28,7 @@
         Category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> <br>
         (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
         <br>
-        {{ task.short_description|slice:":150"}}
+        {{ task.short_description|safe|slice:":150"}}
         <br>
         {{ task.date_created }}
         {% if user.is_authenticated %}

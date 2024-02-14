@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -18,7 +18,8 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     title_tag = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    short_description = models.TextField()
+    short_description = RichTextField(blank=True, null=True)
+    # short_description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField(default=0)
     category = models.CharField(max_length=200, default='uncategorized')
@@ -33,4 +34,3 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
-

@@ -13,6 +13,7 @@
     <form method="POST" class="submit_form">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ form.media }}
         <a href="{% url 'home' %}" class="btn btn-secondary">Discard Changes</a>
         <button class="btn btn-secondary">Update Task</button>
         <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete Task</a>
