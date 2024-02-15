@@ -1,0 +1,17 @@
+{% extends 'task/base.html' %}
+{% block title %} Edit Profile {% endblock %}
+{% block content %}
+
+
+<h1>Edit profile.</h1>
+
+<div class="form-group">
+    <form method="POST" class="submit_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Save Changes</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+{% endblock %}
