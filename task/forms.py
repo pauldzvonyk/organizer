@@ -13,16 +13,14 @@ for item in choice_list:
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'author', 'category', 'short_description', 'priority')
+        fields = ('title', 'author', 'category', 'snippet', 'short_description', 'priority')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'js_tweek_id', 'type': 'hidden'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'js_tweak_id', 'type': 'hidden'}),
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
-            'short_description': forms.Textarea(attrs={'class': 'form-control',
-                                                       'placeholder': 'Enter a short '
-                                                                      'description of the '
-                                                                      'task...'}),
+            'snippet': forms.TextInput(attrs={'class': 'form-control'}),
+            'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'priority': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
@@ -33,14 +31,12 @@ EditForm class is necessary to enable the form view with different widgets
 class EditForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'category', 'short_description', 'priority')
+        fields = ('title', 'category', 'snippet', 'short_description', 'priority')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
-            'short_description': forms.Textarea(attrs={'class': 'form-control',
-                                                       'placeholder': 'Enter a short '
-                                                                      'description of the '
-                                                                      'task...'}),
+            'snippet': forms.TextInput(attrs={'class': 'form-control'}),
+            'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'priority': forms.TextInput(attrs={'class': 'form-control'}),
         }
