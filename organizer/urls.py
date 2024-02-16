@@ -8,4 +8,6 @@ urlpatterns = [
     # Order is important, django.contrib.auth.urls first to handle login, logout and registration page urls for us
     path('members/', include('django.contrib.auth.urls')),
     path('members/', include('members.urls')),
+    # Handles default django path for password change
+    path('1/', include('members.urls')),
 ]
