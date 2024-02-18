@@ -10,7 +10,7 @@
 <h1>Update Your Task</h1><small>created on {{ task.date_created }}</small>
 
 <div class="form-group">
-    <form method="POST" class="submit_form">
+    <form method="POST" class="submit_form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         {{ form.media }}

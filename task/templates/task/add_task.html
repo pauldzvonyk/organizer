@@ -9,7 +9,7 @@
 <h1>Set the Next Task...!!!!!</h1>
 
 <div class="form-group">
-    <form method="POST" class="submit_form">
+    <form method="POST" class="submit_form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         {{ form.media }}

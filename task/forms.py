@@ -13,7 +13,7 @@ for item in choice_list:
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'author', 'category', 'snippet', 'short_description', 'priority')
+        fields = ('title', 'author', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'priority')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -31,7 +31,7 @@ EditForm class is necessary to enable the form view with different widgets
 class EditForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'category', 'snippet', 'short_description', 'priority')
+        fields = ('title', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'priority')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),

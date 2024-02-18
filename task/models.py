@@ -18,6 +18,8 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     title_tag = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image_header = models.ImageField(null=True, blank=True, upload_to='image_header/')
+    task_images = models.ImageField(null=True, blank=True, upload_to='task_images/')
     short_description = RichTextField(blank=True, null=True)
     # short_description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)

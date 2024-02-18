@@ -16,7 +16,13 @@
 <br>
 <hr>
 <p>
-    {{ task.short_description|safe }}
+    {% if task.image_header %}
+    <img src="{{ task.image_header.url }}"><br><br>
+    {% endif %}
+    {{ task.short_description|safe }}<br><br>
+    {% if task.image_header %}
+    <img src="{{ task.task_images.url }}">
+    {% endif %}
 </p>
 <br><br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
