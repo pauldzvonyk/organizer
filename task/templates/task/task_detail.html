@@ -17,15 +17,43 @@
 <hr>
 <p>
     {% if task.image_header %}
-    <img src="{{ task.image_header.url }}"><br><br>
+    <img src="{{ task.image_header.url }}" width="400" height="200"><br><br>
     {% endif %}
 
     {{ task.short_description|safe }}<br><br>
 
     {% if task.task_images %}
-    <img src="{{ task.task_images.url }}">
+    <img src="{{ task.task_images.url }}" width="400" height="200">
     {% endif %}
 </p>
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="{{ task.author.profile.profile_pic.url }}" class="card-img">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">{{ task.author.first_name }}{{ task.author.last_name }}</h5>
+        <p class="small text-muted">
+            {% if task.author.profile.website_url %}
+            <a href="{{ task.author.profile.website_url }}" target="_blank">Website |</a>
+            {% endif %}
+            {% if task.author.profile.linkedin_url %}
+            <a href="{{ task.author.profile.linkedin_url }}" target="blank">Linkedin |</a>
+            {% endif %}
+            {% if task.author.profile.social_url %}
+            <a href="{{ task.author.profile.social_url }}" target="blank">Social</a>
+            {% endif %}
+        </p>
+        <p class="card-text">{{ task.author.profile.bio }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ task.author.profile.website_url }}
+
 <br><br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
