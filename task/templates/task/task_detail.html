@@ -19,8 +19,10 @@
     {% if task.image_header %}
     <img src="{{ task.image_header.url }}"><br><br>
     {% endif %}
+
     {{ task.short_description|safe }}<br><br>
-    {% if task.image_header %}
+
+    {% if task.task_images %}
     <img src="{{ task.task_images.url }}">
     {% endif %}
 </p>
