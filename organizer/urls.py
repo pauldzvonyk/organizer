@@ -12,5 +12,5 @@ urlpatterns = [
                   path('members/', include('django.contrib.auth.urls')),
                   path('members/', include('members.urls')),
                   # Handles default django path for password change
-                  path('1/', include('members.urls')),
+                  path('<int:user_id>/', include('members.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
