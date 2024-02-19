@@ -1,4 +1,5 @@
 {% extends 'task/base.html' %}
+{% load static %}
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
 
@@ -28,37 +29,41 @@
 </p>
 
 <div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-2">
-      <img src="{{ task.author.profile.profile_pic.url }}" class="card-img">
+    <div class="row g-0">
+        <div class="col-md-2">
+            {% if task.author.profile.profile_pic %}
+            <img src="{{ task.author.profile.profile_pic.url }}" class="card-img">
+            {% else %}
+            <img src="{% static 'task/images/default_profile_image.png' %}" class="card-img">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.author.first_name }}{{ task.author.last_name }}</h5>
+                <p class="small text-muted">
+                    {% if task.author.profile.website_url %}
+                    <a href="{{ task.author.profile.website_url }}" target="_blank">Website |</a>
+                    {% endif %}
+                    {% if task.author.profile.linkedin_url %}
+                    <a href="{{ task.author.profile.linkedin_url }}" target="blank">Linkedin |</a>
+                    {% endif %}
+                    {% if task.author.profile.social_url %}
+                    <a href="{{ task.author.profile.social_url }}" target="blank">Social</a>
+                    {% endif %}
+                </p>
+                <p class="card-text">{{ task.author.profile.bio }}</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title">{{ task.author.first_name }}{{ task.author.last_name }}</h5>
-        <p class="small text-muted">
-            {% if task.author.profile.website_url %}
-            <a href="{{ task.author.profile.website_url }}" target="_blank">Website |</a>
-            {% endif %}
-            {% if task.author.profile.linkedin_url %}
-            <a href="{{ task.author.profile.linkedin_url }}" target="blank">Linkedin |</a>
-            {% endif %}
-            {% if task.author.profile.social_url %}
-            <a href="{{ task.author.profile.social_url }}" target="blank">Social</a>
-            {% endif %}
-        </p>
-        <p class="card-text">{{ task.author.profile.bio }}</p>
-      </div>
-    </div>
-  </div>
 </div>
 
-{{ task.author.profile.website_url }}
 
 <br><br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
 <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
-<br><br><hr><br>
+<br><br>
+<hr><br>
 
 <!-- the following code is for the like button, which isn't used in this app for now.
 <form action="{% url 'like_task' task.pk %}" method="POST">
