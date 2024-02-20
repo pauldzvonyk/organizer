@@ -11,6 +11,6 @@ urlpatterns = [
                   # registration page urls for us
                   path('members/', include('django.contrib.auth.urls')),
                   path('members/', include('members.urls')),
-                  # Handles default django path for password change
+                  # Handles dynamic default django path for password change
                   path('<int:user_id>/', include('members.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
