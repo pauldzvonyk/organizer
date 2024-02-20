@@ -1,9 +1,38 @@
 {% extends 'task/base.html' %}
+{% load static %}
 {% block title %} Profile Page {% endblock %}
 {% block content %}
 
 <h1>This is your Profile Page</h1>
+<br><br>
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-2">
+            {% if current_user.profile_pic %}
+            <img src="{{ current_user.profile_pic.url }}" class="card-img">
+            {% else %}
+            <img src="{% static 'task/images/default_profile_image.png' %}" class="card-img">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{ current_user.user.first_name }} {{ current_user.user.last_name }}</h5>
+                <p class="small text-muted">
+                    {% if current_user.website_url %}
+                    <a href="{{ current_user.website_url }}" target="_blank">Website</a>
+                    {% endif %}
+                    {% if current_user.linkedin_url %}
+                    | <a href="{{ current_user.linkedin_url }}" target="blank">Linkedin</a>
+                    {% endif %}
+                    {% if current_user.social_url %}
+                    | <a href="{{ current_user.social_url }}" target="blank">Social</a>
+                    {% endif %}
+                </p>
+                <p class="card-text">{{ current_user.bio }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-{{ current_user }}
 
 {% endblock %}
