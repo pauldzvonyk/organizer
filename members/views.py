@@ -7,6 +7,13 @@ from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 from task.models import Profile
 
 
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    template_name = 'registration/edit_profile_page.html'
+    fields = '__all__'
+    success_url = reverse_lazy('user_profile')
+
+
 class ProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
