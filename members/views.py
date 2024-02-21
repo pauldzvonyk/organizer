@@ -5,13 +5,18 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 from task.models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class EditProfilePageView(generic.UpdateView):
+class EditProfilePageView(LoginRequiredMixin, generic.UpdateView):
     model = Profile
     template_name = 'registration/edit_profile_page.html'
     fields = '__all__'
     success_url = reverse_lazy('user_profile')
+
+    def get_object(self, queryset=None):
+        # Use the authenticated user's profile for editing
+        return self.request.user.profile
 
 
 class ProfilePageView(DetailView):
@@ -24,6 +29,7 @@ class ProfilePageView(DetailView):
         current_user = get_object_or_404(Profile, id=self.kwargs['pk'])
         context['current_user'] = current_user
         return context
+
 
 class UserRegistrationView(generic.CreateView):
     form_class = SignUpForm
