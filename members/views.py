@@ -3,16 +3,18 @@ from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
+from .forms import SignUpForm, EditProfileForm, ChangePasswordForm, CreateProfileForm
 from task.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class CreateProfilePageView(CreateView):
     model = Profile
+    form_class = CreateProfileForm
     template_name = 'registration/create_profile_page.html'
-    fields = '__all__'
     success_url = reverse_lazy('home')
+
+    """The form_valid function below adds the current user to the form and saves it."""
 
     def form_valid(self, form):
         form.instance.user = self.request.user

@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
+from task.models import Profile
 
 """Customizing the registration form, adding extra fields like email, name, surname etc...
     built in UserCreationForm is instantiated with default fields (username, password1 and password2),
@@ -57,3 +58,16 @@ class ChangePasswordForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+
+class CreateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'profile_pic', 'website_url', 'linkedin_url', 'social_url')
+
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'social_url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
