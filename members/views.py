@@ -1,11 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 from task.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class CreateProfilePageView(CreateView):
+    model = Profile
+    template_name = 'registration/create_profile_page.html'
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class EditProfilePageView(LoginRequiredMixin, generic.UpdateView):

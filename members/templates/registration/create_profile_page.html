@@ -1,0 +1,26 @@
+{% extends 'task/base.html' %}
+{% block title %} Create Profile {% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+
+<h1>Create Your Profile Page!</h1>
+
+<div class="form-group">
+    <form method="POST" class="submit_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Create Profile Page</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+{% else %}
+
+You're not allowed here, and you know it!...
+
+{% endif %}
+
+{% endblock %}
