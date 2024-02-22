@@ -3,6 +3,7 @@
 {% block title %} Profile Page {% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
 <h1>This is your Profile Page</h1>
 <br><br>
 <div class="card mb-3">
@@ -35,6 +36,10 @@
 </div>
 
 <a href="{% url 'edit_profile_page' profile.user.id %}">Edit Profile</a>
+{% else %}
 
+This page is dedicated for logged-in users only!
+
+{% endif %}
 
 {% endblock %}

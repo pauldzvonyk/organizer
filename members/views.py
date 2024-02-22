@@ -12,7 +12,7 @@ class EditProfilePageView(LoginRequiredMixin, generic.UpdateView):
     model = Profile
     template_name = 'registration/edit_profile_page.html'
     fields = '__all__'
-    success_url = reverse_lazy('user_profile')
+    success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
         # Use the authenticated user's profile for editing
