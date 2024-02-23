@@ -1,0 +1,32 @@
+{% extends 'task/base.html' %}
+{% block title %} Add Comment {% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+
+<h1>Add Comment</h1>
+
+<div class="form-group">
+    <form method="POST" class="submit_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.media }}
+        <button class="btn btn-secondary">Add Comment</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("js_tweak_id").value = name;
+</script>
+
+{% else %}
+
+You're not allowed here, and you know it!...
+
+{% endif %}
+
+{% endblock %}

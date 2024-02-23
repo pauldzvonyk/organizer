@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Task, Category
-from .forms import TaskForm, EditForm
+from .models import Task, Category, Comment
+from .forms import TaskForm, EditForm, AddComment
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
@@ -67,6 +67,20 @@ class AddCategoryView(CategoryMixin, CreateView):
     template_name = 'task/add_category.html'
     fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'priority')
+
+
+class AddCommentView(CategoryMixin, CreateView):
+    model = Comment
+    form_class = AddComment
+    template_name = 'task/add_comment.html'
+    ordering = ['-date_created']
+
+    def form_valid(self, form):
+        form.instance.task_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('task-detail', kwargs={'pk': self.kwargs['pk']})
 
 
 class CategoryView(CategoryMixin, ListView):

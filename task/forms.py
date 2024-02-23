@@ -1,5 +1,5 @@
 from django import forms
-from .models import Task, Category
+from .models import Task, Category, Comment
 
 # hard-coded variable assignment syntax and django format
 # choice = [('work', 'work'), ('sport', 'sport'), ('family', 'family')]
@@ -10,14 +10,17 @@ choice = []
 for item in choice_list:
     choice.append(item)
 
+
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'author', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'priority')
+        fields = (
+        'title', 'author', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'priority')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'js_tweak_id', 'type': 'hidden'}),
+            'author': forms.TextInput(
+                attrs={'class': 'form-control', 'value': '', 'id': 'js_tweak_id', 'type': 'hidden'}),
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
@@ -39,4 +42,15 @@ class EditForm(forms.ModelForm):
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'priority': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class AddComment(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
         }

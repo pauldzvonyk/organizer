@@ -59,7 +59,21 @@
     </div>
 </div>
 
+<hr><h3>Comments...</h3> <br>
+{% if not task.comments.all %}
+There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
+{% else %}
+<a href="{% url 'add_comment' task.pk %}">Add Comment</a><br><br>
+{% for comment in task.comments.all %}
+<strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
+<br>
+{{ comment.body|safe }}
 
+{% endfor %}
+<a href="{% url 'add_comment' task.pk %}">Add Comment</a><br><br><hr>
+{% endif %}
+
+{{ task.author.comments.body }}
 <br><br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
