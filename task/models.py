@@ -52,3 +52,13 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+
+class Comment(models.Model):
+    task = models.ForeignKey(Task, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    comment_date = models.DateTimeField(auto_now_add=True)
+    body = RichTextField(blank=True, null=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.task.title, self.name)
