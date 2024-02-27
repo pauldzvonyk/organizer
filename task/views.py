@@ -73,7 +73,6 @@ class AddCommentView(CategoryMixin, CreateView):
     model = Comment
     form_class = AddComment
     template_name = 'task/add_comment.html'
-    ordering = ['-date_created']
 
     def form_valid(self, form):
         form.instance.task_id = self.kwargs['pk']
