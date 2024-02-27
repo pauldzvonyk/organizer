@@ -37,7 +37,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_task' %}">Add Task</a>
+                    <a class="nav-link" href="{% url 'add_task' %}">New Task</a>
                 </li>
                 <!-- Category Menu Code -->
                 {% if cat_list %}
@@ -57,13 +57,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="logout()">Logout</a>
-                    <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
-                        {% csrf_token %}
-                    </form>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
                 {% else %}
@@ -75,6 +68,7 @@
                 </li>
                 {% endif %}
             </ul>
+            {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,14 +78,20 @@
                         {% if user.profile.id %}
                         <li><a class="dropdown-item" href="{% url 'user_profile' user.profile.id %}">View Profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></li>
+                        <a class="dropdown-item" href="#" onclick="logout()">Logout</a>
+                        <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                            {% csrf_token %}
+                        </form>
                         {% else %}
                         <li><a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a></li>
                         {% endif %}
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{% url 'edit_profile' %}">Settings</a></li>
                     </ul>
+
                 </li>
             </ul>
+            {% endif %}
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
