@@ -28,7 +28,7 @@
     <img src="{{ task.task_images.url }}" width="400" height="200">
     {% endif %}
 </p>
-
+{% if task.author.profile %}
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-2">
@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 <hr><h3>Comments...</h3> <br>
 {% if not task.comments.all %}
 There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
