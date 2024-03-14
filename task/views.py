@@ -6,6 +6,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
 
+def landing_page(request):
+    return render(request, 'task/landing_page.html')
+
+
 def LikeView(request, pk):
     task = get_object_or_404(Task, id=request.POST.get('task_id'))
     liked = False

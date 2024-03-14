@@ -1,9 +1,10 @@
 from django.urls import path
 from .views import (HomeView, TaskDetailView, AddTaskView, EditTaskView, DeleteTaskView, AddCategoryView, CategoryView,
-                    LikeView, AddCommentView)
+                    LikeView, AddCommentView, landing_page)
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    path('', landing_page, name='landing_page'),
+    path('home/', HomeView.as_view(), name='home'),
     path('task/<int:pk>', TaskDetailView.as_view(), name='task-detail'),
     path('add_task/', AddTaskView.as_view(), name='add_task'),
     path('task/edit/<int:pk>', EditTaskView.as_view(), name='edit_task'),
