@@ -22,8 +22,9 @@
         <br>
         {{ task.date_created }}
         {% if user.is_authenticated %}
-        <a href="{% url 'edit_task' task.pk %}">Edit</a>
-        <a href="{% url 'delete_task' task.pk %}">Delete</a>
+        <a class="btn btn-outline-danger btn-sm float-end" href="{% url 'delete_task' task.pk %}">Delete</a>
+        <a class="btn btn-outline-success btn-sm float-end" href="{% url 'edit_task' task.pk %}">Edit</a>
+        <a class="btn btn-outline-primary btn-sm float-end" href="{% url 'task-detail' task.pk %}">Open</a>
         {% endif %}
 
         <hr>
