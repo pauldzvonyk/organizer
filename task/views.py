@@ -10,6 +10,17 @@ def landing_page(request):
     return render(request, 'task/landing_page.html')
 
 
+def search_task(request):
+    if request.method == 'POST':
+        searched = request.POST['search-for']
+        all_searched = Task.objects.filter(title__contains=searched)
+        return render(request, 'task/search_task.html',
+                      {'searched': searched, 'all_searched': all_searched})
+    # else:
+    #     return render(request, 'task/search_task.html')
+
+
+
 def LikeView(request, pk):
     task = get_object_or_404(Task, id=request.POST.get('task_id'))
     liked = False

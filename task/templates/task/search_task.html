@@ -1,0 +1,20 @@
+{% extends 'task/base.html' %}
+{% load static %}
+{% block title %} Search Result {% endblock %}
+{% block content %}
+
+{% if searched %}
+<h1 class="landing-text">The search has produced the following results...{{ searched }}</h1>
+<br><hr>
+{% for searched_tasks in all_searched %}
+{{ searched_tasks }}<br>
+{% endfor %}<hr>
+{% else %}
+
+<h1>You forgot to search for something!</h1>
+
+{% endif %}
+
+
+{% endblock %}
+
