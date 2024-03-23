@@ -16,8 +16,8 @@ def search_task(request):
         all_searched = Task.objects.filter(title__contains=searched)
         return render(request, 'task/search_task.html',
                       {'searched': searched, 'all_searched': all_searched})
-    # else:
-    #     return render(request, 'task/search_task.html')
+    else:
+        return render(request, 'task/search_task.html')
 
 
 

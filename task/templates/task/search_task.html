@@ -5,12 +5,16 @@
 
 {% if searched %}
 <h1 class="landing-text">The search has produced the following results...{{ searched }}</h1>
-<br><hr>
-{% for searched_tasks in all_searched %}
-{% if user.id == searched_tasks.author.id %}
-<a href="{% url 'task-detail' searched_tasks.pk %}">{{ searched_tasks }}</a><br>
-{% endif %}
-{% endfor %}<hr>
+    {% if all_searched %}
+        <br><hr>
+        {% for searched_tasks in all_searched %}
+        {% if user.id == searched_tasks.author.id %}
+        <a href="{% url 'task-detail' searched_tasks.pk %}">{{ searched_tasks }}</a><br>
+        {% endif %}
+        {% endfor %}<hr>
+    {% else %}
+        <h1>There's no word {{ searched }} in existing tasks, please, try another one...</h1>
+    {% endif %}
 {% else %}
 
 <h1>You forgot to search for something!</h1>
