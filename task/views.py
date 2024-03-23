@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 
 def landing_page(request):
-    return render(request, 'task/landing_page.html')
+    return render(request, 'task/home.html')
 
 
 def search_task(request):
@@ -46,7 +46,7 @@ class CategoryMixin:
 
 class HomeView(CategoryMixin, ListView):
     model = Task
-    template_name = 'task/home.html'
+    template_name = 'task/all_tasks.html'
     ordering = ['-date_created']
 
 
@@ -129,4 +129,4 @@ class EditTaskView(CategoryMixin, UpdateView):
 class DeleteTaskView(CategoryMixin, DeleteView):
     model = Task
     template_name = 'task/delete_task.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('all-tasks')
