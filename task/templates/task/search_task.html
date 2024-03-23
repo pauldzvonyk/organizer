@@ -7,7 +7,7 @@
 <h1 class="landing-text">The search has produced the following results...{{ searched }}</h1>
 <br><hr>
 {% for searched_tasks in all_searched %}
-{{ searched_tasks }}<br>
+<a href="{% url 'task-detail' searched_tasks.pk %}">{{ searched_tasks }}</a><br>
 {% endfor %}<hr>
 {% else %}
 
