@@ -96,6 +96,12 @@ class AddCommentView(CategoryMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('task-detail', kwargs={'pk': self.kwargs['pk']})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        task = Task.objects.get(pk=self.kwargs['pk'])
+        context['task'] = task
+        return context
+
 
 class CategoryView(CategoryMixin, ListView):
     template_name = 'task/categories.html'
