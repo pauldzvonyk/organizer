@@ -13,7 +13,7 @@
     <form method="POST" class="submit_form">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+        <a href="{% url 'task-detail' task.pk %}" class="btn btn-secondary">Back</a>
         <button class="btn btn-secondary">Delete</button>
     </form>
 </div>
