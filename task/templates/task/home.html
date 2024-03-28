@@ -1,32 +1,40 @@
 {% extends 'task/base.html' %}
 {% load static %}
-{% block title %} Home Page {% endblock %}
+<head>
+    {% block title %} Home Page {% endblock %}
+    <link rel="stylesheet" href="{% static 'task/css/custom.css' %}">
+</head>
+
 {% block content %}
 
-
-<h1 class="landing-text text-center">Wellcome to the world, where your everyday tasks and chores are transformed
-into fun! Choose whether you would like to make a tree or flower grow, a fire to burn brighter or
-to win a challenge and see your competitors stare in owe at your achievements, as you race towards
-the victory. And all this just by doing even the most boring staff that you can think of, like washing the
-dishes, studying or even doing some house-keeping. What are you waiting for? It's totally free, sign UP and
-enjoy your day in a fun way!!!</h1>
-<div class="container border" style="clear:both">
-  <div class="row border">
-    <div class="col-8 border">col-sm-8</div>
-    <div class="col-4 border">col-sm-4</div>
-  </div>
-  <div class="row border">
-    <div class="col border">col-sm</div>
-    <div class="col border">col-sm</div>
-    <div class="col border"><img src="{% static 'task/images/tree-growth.jpg' %}" class="rounded">
+<div class="container" style="background: pink">
+  Main Container
+    <div class="row">
+        <div class="col border" style="background: grey">Col1</div>
+        <div class="col border" style="background: grey">Col2</div>
+    </div>
 </div>
+<div class="container">
+  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+  <div class="row">
+    <div class="col-md-8 border">.col-md-8</div>
+    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
+  </div>
+  <br><br>
+
+  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+  <div class="row">
+    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
+    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
+    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
+  </div>
+<br><br>
+  <!-- Columns are always 50% wide, on mobile and desktop -->
+  <div class="row">
+    <div class="col-2 border">.col-6</div>
+    <div class="col-10 border">.col-6</div>
   </div>
 </div>
-<br>
-<div class="container-col-12 border text-center">Container</div>
-
-
-
 
 
 {% endblock %}
