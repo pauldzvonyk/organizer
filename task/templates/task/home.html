@@ -7,35 +7,43 @@
 
 {% block content %}
 
-<div class="container" style="background: pink">
+<div class="container overflow-hidden text-center" style="background: pink">
   Main Container
-    <div class="row">
-        <div class="col border" style="background: grey">Col1</div>
-        <div class="col border" style="background: grey">Col2</div>
+    <div class="row text-center my-3">
+        <div class="col-md-3 border bg-secondary">Col1</div>
+        <div class="col-md-3 border bg-warning">Col2</div>
+        <div class="col-md-3 border bg-success">Col3</div>
+        <div class="col-md-3 border bg-primary">Col4</div>
     </div>
+  <div class="mx-auto border" style="width: 200px">AUTO</div>
 </div>
-<div class="container">
-  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-  <div class="row">
-    <div class="col-md-8 border">.col-md-8</div>
-    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
-  </div>
-  <br><br>
+<br>
 
-  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-  <div class="row">
-    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
-    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
-    <div class="col-6 col-md-4 border">.col-6 .col-md-4</div>
-  </div>
-<br><br>
-  <!-- Columns are always 50% wide, on mobile and desktop -->
-  <div class="row">
-    <div class="col-2 border">.col-6</div>
-    <div class="col-10 border">.col-6</div>
-  </div>
-</div>
+<!--https://picsum.photos/200/100-->
 
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
 
+<img src="{% static 'task/assets/bootstrap-icons/0-circle.svg' %}" alt="Bootstrap" width="32" height="32">
+<img src="{% static 'task/images/tree-growth.jpg' %}" alt="tree">
 {% endblock %}
 
