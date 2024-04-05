@@ -8,28 +8,76 @@
 
 {% block content %}
 
-<div class="container overflow-hidden text-center" style="background: pink">
-  Main Container
+<div class="container text-center my-3">
+    Main Container
     <div class="row text-center my-3">
         <div class="col-md-3 border bg-secondary">Col1</div>
         <div class="col-md-3 border bg-warning">Col2</div>
         <div class="col-md-3 border bg-success">Col3</div>
         <div class="col-md-3 border bg-primary">Col4</div>
     </div>
-  <div class="mx-auto border" style="width: 200px">AUTO</div>
+    <div class="border mx-0">AUTO</div>
 </div>
+
 <br>
 
-<!--https://picsum.photos/200/100-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card col-md-4">
 
-<div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-  <label for="floatingInput">Email address</label>
+            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+        <div class="card col-md-4">
+
+            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+        <div class="card col-md-4">
+
+            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="form-floating">
-  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-  <label for="floatingPassword">Password</label>
-</div>
+
+<!--https://picsum.photos/200/100-->
 
 
 
