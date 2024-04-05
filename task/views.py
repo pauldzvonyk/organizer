@@ -73,6 +73,7 @@ class AddTaskView(CategoryMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task/add_task.html'
+    success_url = reverse_lazy('all-tasks')
     # fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'priority')
 
