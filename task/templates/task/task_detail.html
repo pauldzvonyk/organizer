@@ -19,13 +19,13 @@
 <hr>
 <p>
     {% if task.image_header %}
-    <img src="{{ task.image_header.url }}" width="400" height="200"><br><br>
+    <img src="{{ task.image_header.url }}" width="400" height="300"><br><br>
     {% endif %}
 
     {{ task.short_description|safe }}<br><br>
 
     {% if task.task_images %}
-    <img src="{{ task.task_images.url }}" width="400" height="200">
+    <img src="{{ task.task_images.url }}" width="400" height="300">
     {% endif %}
 </p>
 {% if task.author.profile %}
