@@ -7,8 +7,38 @@
 </head>
 
 {% block content %}
+<div class="container fst-italic fw-bold">
+    <div class="row">
+        <p class="col-md-6 text-center mt-3"><span class="lead fw-bold"> Let's roll and get things done... NOW!</span><br><br>
+            Don't let the tree wither and die.<br>
+            Plant your idea like a seed and watch it grow into a beautiful tree, getting stronger and taller,
+            until your goal is complete.
+        </p>
+        <div class="col-md-6">
+            <img src="{% static 'task/images/main-tree.png' %}">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            </div>
+        </div>
+    </div>
 
-<div class="container text-center my-3">
+</div>
+
+<div class="container text-center mt-4">
+    <div class="row">
+        <ul class="col-md-6 px-4 list-group">
+            <li class="list-group-item fw-bold bg-primary text-white">Why use "Fundo"?</li>
+            <li class="list-group-item bg-secondary text-white">Stay focused and motivated.</li>
+            <li class="list-group-item bg-secondary text-white">It is a lot of fun!</li>
+            <li class="list-group-item bg-secondary text-white">It is easy to use.</li>
+            <li class="list-group-item bg-secondary text-white">It is 100% free!</li>
+        </ul>
+        <div class="col-md-6">text or images here...</div>
+        <a href="#">click here</a>
+    </div>
+</div>
+
+<div class="container text-center my-3 border">
     Main Container
     <div class="row text-center my-3">
         <div class="col-md-3 border bg-secondary">Col1</div>
