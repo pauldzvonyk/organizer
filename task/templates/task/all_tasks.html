@@ -12,47 +12,31 @@
 </div>
 <h2>All Active Tasks</h2>
 <div class="container">
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-3 g-4"> <!-- Add row-cols-1 and row-cols-md-3 for single column layout on small screens -->
         {% for task in object_list %}
         {% if user.id == task.author.id %}
 
-        <div class="card col-md-4">
-            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
-            <a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
-            See all the tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> <br>
-            (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
-            <br>
-            {{ task.snippet }}
-            <br>
-            {{ task.date_created }}
-            <div class="card-body text-center">
-                <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_task' task.pk %}">Delete</a>
-                <a class="btn btn-outline-success btn-sm" href="{% url 'edit_task' task.pk %}">Edit</a>
-                <a class="btn btn-outline-primary btn-sm" href="{% url 'task-detail' task.pk %}">Open</a>
+        <div class="col">
+            <div class="card h-100"> <!-- Add h-100 class to ensure cards have equal height -->
+                <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+                    <p class="card-text">See all the tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
+                    <p class="card-text">(Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")</p>
+                    <p class="card-text">{{ task.snippet|truncatechars:100 }}</p>
+                    <p class="card-text">{{ task.date_created }}</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_task' task.pk %}">Delete</a>
+                    <a class="btn btn-outline-success btn-sm" href="{% url 'edit_task' task.pk %}">Edit</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{% url 'task-detail' task.pk %}">Open</a>
+                </div>
             </div>
-            <hr>
         </div>
         {% endif %}
         {% endfor %}
     </div>
 </div>
-<div class="card col-md-4">
-
-            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
 
 {% endif %}
 
