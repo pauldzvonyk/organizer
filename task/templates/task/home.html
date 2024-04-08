@@ -7,7 +7,7 @@
 </head>
 
 {% block content %}
-<div class="container fst-italic fw-bold">
+<div class="container fw-bold">
     <div class="row">
         <p class="col-md-6 text-center mt-3"><span class="lead fw-bold"> Let's roll and get things done... NOW!</span><br><br>
             Don't let the tree wither and die.<br>
@@ -33,83 +33,28 @@
             <li class="list-group-item bg-secondary text-white">It is easy to use.</li>
             <li class="list-group-item bg-secondary text-white">It is 100% free!</li>
         </ul>
-        <div class="col-md-6">text or images here...</div>
-        <a href="#">click here</a>
+        <div class="col-md-6 border">text or images here...</div>
     </div>
 </div>
 
-<div class="container text-center my-3 border">
-    Main Container
-    <div class="row text-center my-3">
+<div class="container text-center">
+    <p class="lead fw-bold mb-0">What are you waiting for? Sign up and have fun!</p>
+    <p>Like what you see? You can check more apps on the links below, they are all open source
+    and your contribution is very wellcome. Thank you!</p>
+    <div class="row text-center">
         <div class="col-md-3 border bg-secondary">Col1</div>
         <div class="col-md-3 border bg-warning">Col2</div>
         <div class="col-md-3 border bg-success">Col3</div>
         <div class="col-md-3 border bg-primary">Col4</div>
     </div>
-    <div class="border mx-0">AUTO</div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'all-tasks' %}" class="btn btn-outline-success btn-sm mt-3">Go to tasks...</a>
+    {% else %}
+    <a href="{% url 'register' %}" class="btn btn-outline-success btn-sm mt-3">Start Now</a>
+    {% endif %}
 </div>
 
-<br>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="card col-md-4">
-
-            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="card col-md-4">
-
-            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <div class="card col-md-4">
-
-            <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--https://picsum.photos/200/100-->
-
-
-
 {% endblock %}
 
