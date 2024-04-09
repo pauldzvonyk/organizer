@@ -23,7 +23,7 @@ class Task(models.Model):
     short_description = RichTextField(blank=True, null=True)
     # short_description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
-    priority = models.IntegerField(default=0)
+    progress = models.IntegerField(default=0)
     category = models.CharField(max_length=200, default='uncategorized')
     snippet = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)

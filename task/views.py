@@ -75,14 +75,14 @@ class AddTaskView(CategoryMixin, CreateView):
     template_name = 'task/add_task.html'
     success_url = reverse_lazy('all-tasks')
     # fields = '__all__'
-    # fields = ('title', 'author', 'short_description', 'priority')
+    # fields = ('title', 'author', 'short_description', 'progress')
 
 
 class AddCategoryView(CategoryMixin, CreateView):
     model = Category
     template_name = 'task/add_category.html'
     fields = '__all__'
-    # fields = ('title', 'author', 'short_description', 'priority')
+    # fields = ('title', 'author', 'short_description', 'progress')
 
 
 class AddCommentView(CategoryMixin, CreateView):
@@ -124,7 +124,7 @@ class EditTaskView(CategoryMixin, UpdateView):
     form_class = EditForm
     # no need to define form_class, as it has already been taken care of with UpdateView
     template_name = 'task/edit_task.html'
-    # fields = ('title', 'title_tag', 'short_description', 'date_created', 'priority', 'completed')
+    # fields = ('title', 'title_tag', 'short_description', 'date_created', 'progress', 'completed')
 
 
 class DeleteTaskView(CategoryMixin, DeleteView):

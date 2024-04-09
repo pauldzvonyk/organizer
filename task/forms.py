@@ -15,7 +15,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ('title', 'author', 'snippet', 'category', 'image_header',
-                  'short_description', 'task_images', 'priority')
+                  'short_description', 'task_images', 'progress')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -24,7 +24,7 @@ class TaskForm(forms.ModelForm):
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
-            'priority': forms.TextInput(attrs={'class': 'form-control'}),
+            'progress': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -34,14 +34,14 @@ EditForm class is necessary to enable the form view with different widgets
 class EditForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'priority')
+        fields = ('title', 'snippet', 'category', 'image_header', 'short_description', 'task_images', 'progress')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),
             'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
-            'priority': forms.TextInput(attrs={'class': 'form-control'}),
+            'progress': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
