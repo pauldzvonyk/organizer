@@ -8,13 +8,12 @@
 {% if user.id == task.author.id %}
 
 
-<h1>{{ task.title }}</h1>
-<small>
+<h1 class="text-center">{{ task.title }}</h1>
+<p class="small text-muted text-center">
     By: {{ task.author.first_name }}
     <br>
     Created on {{ task.date_created }}
-    {{ task.author.profile.id }}
-</small>
+</p>
 <br>
 <img src="{% static task.get_progress_image_url %}" alt="Progress Image">
 <hr>
