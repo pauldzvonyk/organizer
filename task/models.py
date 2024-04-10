@@ -37,11 +37,19 @@ class Task(models.Model):
 
     def get_progress_image_url(self):
         progress_images = {
-            0: 'task/images/tree01.PNG',
-            1: 'task/images/tree02.PNG',
-            # Add URLs for other progress values as needed
+            0: 'task/images/seed.png',
+            1: 'task/images/tree01.PNG',
+            2: 'task/images/tree02.PNG',
+            3: 'task/images/tree03.PNG',
+            4: 'task/images/tree04.PNG',
+            5: 'task/images/tree05.PNG',
+            6: 'task/images/tree06.PNG',
+            7: 'task/images/tree07.PNG',
+            8: 'task/images/tree08.PNG',
+            9: 'task/images/tree09.PNG',
+            10: 'task/images/tree10.PNG',
         }
-        return progress_images.get(self.progress, 'task/images/default_profile_image.png')
+        return progress_images.get(self.progress, 'task/images/main-tree.png')
 
     def get_absolute_url(self):
         return reverse('home')
