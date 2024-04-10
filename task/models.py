@@ -35,6 +35,14 @@ class Task(models.Model):
     def __str__(self):
         return f"{self.title} (Published by: '{self.author}' on {self.date_created})"
 
+    def get_progress_image_url(self):
+        progress_images = {
+            0: 'images/tree01.PNG',
+            1: 'images/tree02.PNG',
+            # Add URLs for other progress values as needed
+        }
+        return progress_images.get(self.progress, 'images/default_profile_image.png')
+
     def get_absolute_url(self):
         return reverse('home')
 
