@@ -16,6 +16,7 @@
     {{ task.author.profile.id }}
 </small>
 <br>
+<img src="{% static task.get_progress_image_url %}" alt="Progress Image">
 <hr>
 <p>
     {% if task.image_header %}
