@@ -57,6 +57,26 @@ class TaskDetailView(CategoryMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
+        task = self.get_object()
+
+        progress_data = {
+            0: {'text': 'Text for case 0', 'image_url': 'task/images/seed.png'},
+            1: {'text': 'Text for case 1', 'image_url': 'task/images/tree01.PNG'},
+            2: {'text': 'Text for case 2', 'image_url': 'task/images/tree02.PNG'},
+            3: {'text': 'Text for case 3', 'image_url': 'task/images/tree03.PNG'},
+            4: {'text': 'Text for case 4', 'image_url': 'task/images/tree04.PNG'},
+            5: {'text': 'Text for case 5', 'image_url': 'task/images/tree05.PNG'},
+            6: {'text': 'Text for case 6', 'image_url': 'task/images/tree06.PNG'},
+            7: {'text': 'Text for case 7', 'image_url': 'task/images/tree07.PNG'},
+            8: {'text': 'Text for case 8', 'image_url': 'task/images/tree08.PNG'},
+            9: {'text': 'Text for case 9', 'image_url': 'task/images/tree09.PNG'},
+            10: {'text': 'Text for case 10', 'image_url': 'task/images/tree10.PNG'},
+        }
+
+        current_progress_data = progress_data.get(task.progress, {})
+
+        context['current_progress_data'] = current_progress_data
+
         db_likes = get_object_or_404(Task, id=self.kwargs['pk'])
         total_likes = db_likes.total_likes()
 
