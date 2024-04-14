@@ -60,17 +60,51 @@ class TaskDetailView(CategoryMixin, DetailView):
         task = self.get_object()
 
         progress_data = {
-            0: {'text': 'Text for case 0', 'image_url': 'task/images/seed.png'},
-            1: {'text': 'Text for case 1', 'image_url': 'task/images/tree01.PNG'},
-            2: {'text': 'Text for case 2', 'image_url': 'task/images/tree02.PNG'},
-            3: {'text': 'Text for case 3', 'image_url': 'task/images/tree03.PNG'},
-            4: {'text': 'Text for case 4', 'image_url': 'task/images/tree04.PNG'},
-            5: {'text': 'Text for case 5', 'image_url': 'task/images/tree05.PNG'},
-            6: {'text': 'Text for case 6', 'image_url': 'task/images/tree06.PNG'},
-            7: {'text': 'Text for case 7', 'image_url': 'task/images/tree07.PNG'},
-            8: {'text': 'Text for case 8', 'image_url': 'task/images/tree08.PNG'},
-            9: {'text': 'Text for case 9', 'image_url': 'task/images/tree09.PNG'},
-            10: {'text': 'Text for case 10', 'image_url': 'task/images/tree10.PNG'},
+            0: {'text': 'Have an idea? Click on the link below and start a journey!',
+                'image_url': 'task/images/seed.png',
+                'progress_bar': '<div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" '
+                                'aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>',
+                },
+            1: {'text': 'Text for case 1', 'image_url': 'task/images/tree01.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 10%" '
+                                'aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>',
+                },
+            2: {'text': 'Text for case 2', 'image_url': 'task/images/tree02.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 20%" '
+                                'aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>',
+                },
+            3: {'text': 'Text for case 3', 'image_url': 'task/images/tree03.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 30%" '
+                                'aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>',
+                },
+            4: {'text': 'Text for case 4', 'image_url': 'task/images/tree04.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 40%" '
+                                'aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>',
+                },
+            5: {'text': 'Text for case 5', 'image_url': 'task/images/tree05.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 50%" '
+                                'aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>',
+                },
+            6: {'text': 'Text for case 6', 'image_url': 'task/images/tree06.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 60%" '
+                                'aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>',
+                },
+            7: {'text': 'Text for case 7', 'image_url': 'task/images/tree07.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 70%" '
+                                'aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>',
+                },
+            8: {'text': 'Text for case 8', 'image_url': 'task/images/tree08.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 80%" '
+                                'aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>',
+                },
+            9: {'text': 'Text for case 9', 'image_url': 'task/images/tree09.PNG',
+                'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
+                                'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
+                },
+            10: {'text': 'Text for case 10', 'image_url': 'task/images/tree10.PNG',
+                 'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
+                                 'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
+                 },
         }
 
         current_progress_data = progress_data.get(task.progress, {})
