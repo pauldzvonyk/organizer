@@ -12,13 +12,16 @@
     <h2 class="text-center">All Active Tasks</h2>
 </div>
 <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-3 g-4"> <!-- Add row-cols-1 and row-cols-md-3 for single column layout on small screens -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for task in object_list %}
         {% if user.id == task.author.id %}
 
         <div class="col">
-            <div class="card h-100"> <!-- Add h-100 class to ensure cards have equal height -->
-                <img src="{% static 'task/images/tree-growth.jpg' %}" class="card-img-top" alt="...">
+            <div class="card h-100">
+                <!-- Set current_image_url for each task individually -->
+
+                <img src="{% static current_progress_data.image_url %}" class="card-img-top" alt="...">
+
                 <div class="card-body">
                     <a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                     <p class="card-text">See all the tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
@@ -37,6 +40,7 @@
         {% endfor %}
     </div>
 </div>
+
 
 {% endif %}
 

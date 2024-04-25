@@ -41,23 +41,8 @@ class CategoryMixin:
         cat_list = Category.objects.all()
         context = super().get_context_data(*args, **kwargs)
         context['cat_list'] = cat_list
-        return context
 
-
-class HomeView(CategoryMixin, ListView):
-    model = Task
-    template_name = 'task/all_tasks.html'
-    ordering = ['-date_created']
-
-
-class TaskDetailView(CategoryMixin, DetailView):
-    model = Task
-    template_name = 'task/task_detail.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        task = self.get_object()
+        task = self.get_task()
 
         progress_data = {
             0: {'text': 'Have an idea? Click on the link below and start a journey!',
@@ -111,16 +96,39 @@ class TaskDetailView(CategoryMixin, DetailView):
 
         context['current_progress_data'] = current_progress_data
 
-        db_likes = get_object_or_404(Task, id=self.kwargs['pk'])
-        total_likes = db_likes.total_likes()
+        # This part is only needed for DetailView Likes functionality
+        # if hasattr(self, 'object'):
+        #     db_likes = get_object_or_404(Task, id=self.object.pk)
+        #     total_likes = db_likes.total_likes()
+        #
+        #     liked = False
+        #     if db_likes.likes.filter(id=self.request.user.id).exists():
+        #         liked = True
+        #
+        #     context['total_likes'] = total_likes
+        #     context['liked'] = liked
 
-        liked = False
-        if db_likes.likes.filter(id=self.request.user.id).exists():
-            liked = True
-
-        context['total_likes'] = total_likes
-        context['liked'] = liked
         return context
+
+    def get_task(self):
+        if hasattr(self, 'object'):  # DetailView
+            return self.object
+        elif hasattr(self, 'get_queryset'):  # ListView
+            queryset = self.get_queryset()
+            return queryset.first() if queryset.exists() else None
+        else:
+            raise AttributeError("Cannot determine the type of view.")
+
+
+class HomeView(CategoryMixin, ListView):
+    model = Task
+    template_name = 'task/all_tasks.html'
+    ordering = ['-date_created']
+
+
+class TaskDetailView(CategoryMixin, DetailView):
+    model = Task
+    template_name = 'task/task_detail.html'
 
 
 class AddTaskView(CategoryMixin, CreateView):

@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
+{% for task in object_list %}
+    {{ task.current_progress_data }}
+{% endfor %}
 <div class="container-fluid border mt-2">
 
     <div class="row border">
@@ -92,6 +95,7 @@
     <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
     <br><br>
     <hr><br>
+
 
     <!-- the following code is for the like button, which isn't used in this app for now.
 <form action="{% url 'like_task' task.pk %}" method="POST">
