@@ -20,7 +20,7 @@
             <div class="card h-100">
                 <!-- Set current_image_url for each task individually -->
 
-                <img src="{% static current_progress_data.image_url %}" class="card-img-top" alt="...">
+                <img src="{% static current_progress_data.image_url %}" class="card-img-top" alt="Task Progress Image">
 
                 <div class="card-body">
                     <a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>

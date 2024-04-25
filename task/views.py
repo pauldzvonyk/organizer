@@ -120,7 +120,7 @@ class CategoryMixin:
             raise AttributeError("Cannot determine the type of view.")
 
 
-class HomeView(CategoryMixin, ListView):
+class AllTasksView(CategoryMixin, ListView):
     model = Task
     template_name = 'task/all_tasks.html'
     ordering = ['-date_created']
