@@ -18,9 +18,31 @@
 
         <div class="col">
             <div class="card h-100">
-                <!-- Set current_image_url for each task individually -->
 
-                <img src="{% static current_progress_data.image_url %}" class="card-img-top" alt="Task Progress Image">
+                <!-- Set current_image_url for each task individually -->
+                {% if task.progress == 1 %}
+                <img src="{% static 'task/images/tree01.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 2 %}
+                <img src="{% static 'task/images/tree02.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 3 %}
+                <img src="{% static 'task/images/tree03.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 4 %}
+                <img src="{% static 'task/images/tree04.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 5 %}
+                <img src="{% static 'task/images/tree05.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 6 %}
+                <img src="{% static 'task/images/tree06.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 7 %}
+                <img src="{% static 'task/images/tree07.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 8 %}
+                <img src="{% static 'task/images/tree08.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 9 %}
+                <img src="{% static 'task/images/tree09.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 10 %}
+                <img src="{% static 'task/images/tree10.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% else %}
+                <img src="{% static 'task/images/seed.png' %}" class="card-img-top" alt="Task Progress Image">
+                {% endif %}
 
                 <div class="card-body">
                     <a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>

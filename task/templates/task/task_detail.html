@@ -2,9 +2,6 @@
 {% load static %}
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
-{% for task in object_list %}
-    {{ task.current_progress_data }}
-{% endfor %}
 <div class="container-fluid border mt-2">
 
     <div class="row border">
