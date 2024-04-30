@@ -4,8 +4,8 @@
 
 {% if user.is_authenticated %}
 <div class="container-fluid">
-    <h1 class="text-center">This is the all_tasks.html page, where the tasks are displayed after authentication, with all the functionality.
-        Styling is still needed.</h1>
+    <h2 class="text-center text-success">All your Tasks are displayed in chronological order, newest on top, if you can't find the
+        Task that you're looking for, just use the search window above!</h2>
 </div>
 <div class="d-grid gap-2">
     <a href="{% url 'add_task' %}" class="mb-2 btn btn-outline-success btn-sm">Start New Task</a>
@@ -17,15 +17,15 @@
         <div class="card mb-2">
             <div class="row">
                 <div class="card-body col-md-9">
-                    <p><a class="fs-3 fw-bold" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+                    <p><a class="fs-3 fw-bold text-success" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                         &nbsp;&nbsp;({{ task.date_created }})</p>
                     <p class="card-text">See all the tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
                     <p class="card-text">{{ task.snippet|truncatechars:100 }}</p>
-                    <p>
+                    <div>
                         <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_task' task.pk %}">Delete</a>
                         <a class="btn btn-outline-success btn-sm" href="{% url 'edit_task' task.pk %}">Edit</a>
                         <a class="btn btn-outline-primary btn-sm" href="{% url 'task-detail' task.pk %}">Open</a>
-                    </p>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <!-- Set current_image_url for each task individually -->
