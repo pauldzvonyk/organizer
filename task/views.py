@@ -20,7 +20,6 @@ def search_task(request):
         return render(request, 'task/search_task.html')
 
 
-
 def LikeView(request, pk):
     task = get_object_or_404(Task, id=request.POST.get('task_id'))
     liked = False
@@ -131,11 +130,12 @@ class TaskDetailView(CategoryMixin, DetailView):
     template_name = 'task/task_detail.html'
 
 
-class AddTaskView(CategoryMixin, CreateView):
+class AddTaskView(CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task/add_task.html'
     success_url = reverse_lazy('all-tasks')
+
     # fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'progress')
 
