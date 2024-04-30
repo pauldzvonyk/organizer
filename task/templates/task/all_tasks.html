@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 <div class="container-fluid">
-    <h2 class="text-center text-success">All your Tasks are displayed in chronological order, newest on top, if you can't find the
+    <h2 class="text-center">All your Tasks are displayed in chronological order, newest on top, if you can't find the
         Task that you're looking for, just use the search window above!</h2>
 </div>
 <div class="d-grid gap-2">
@@ -19,7 +19,7 @@
                 <div class="card-body col-md-9">
                     <p><a class="fs-3 fw-bold text-success" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                         &nbsp;&nbsp;({{ task.date_created }})</p>
-                    <p class="card-text">See all the tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
+                    <p class="card-text">See all tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
                     <p class="card-text">{{ task.snippet|truncatechars:100 }}</p>
                     <div>
                         <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_task' task.pk %}">Delete</a>

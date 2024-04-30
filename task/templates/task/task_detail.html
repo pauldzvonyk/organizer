@@ -3,19 +3,17 @@
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
 <div class="container-fluid border mt-2">
-
     <div class="row border">
         <div class="col-md-9">
             {% if user.is_authenticated %}
             {% if user.id == task.author.id %}
-            <h1 class="text-center">{{ task.title }}</h1>
+            <h1 class="text-center text-success">{{ task.title }}</h1>
             <p class="small text-muted text-center">
                 By: {{ task.author.first_name }}
                 <br>
                 Created on {{ task.date_created }}
                 <br>
-                <h4 class="text-center">{{ current_progress_data.text }}</h4>
-            </p>
+            <h4 class="text-center">{{ current_progress_data.text }}</h4>
         </div>
         <div class="col-md-3">
             <img src="{% static current_progress_data.image_url %}" alt="Progress Image" class="img-fluid">
@@ -72,7 +70,8 @@
         </div>
     </div>
     {% endif %}
-    <hr><h3>Comments...</h3> <br>
+    <hr>
+    <h3>Comments...</h3> <br>
     {% if not task.comments.all %}
     There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
     {% else %}
@@ -83,15 +82,17 @@
     {{ comment.body|safe }}
 
     {% endfor %}
-    <a href="{% url 'add_comment' task.pk %}">Add Comment</a><br><br><hr>
+    <a href="{% url 'add_comment' task.pk %}">Add Comment</a><br><br>
+    <hr>
     {% endif %}
 
     <br><br><br>
-    <a href="{% url 'all-tasks' %}" class="btn btn-secondary">Back</a>
-    <a href="{% url 'edit_task' task.pk %}" class="btn btn-secondary">Edit</a>
-    <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete</a>
+    <a href="{% url 'all-tasks' %}" class="btn btn-outline-secondary">Back</a>
+    <a href="{% url 'edit_task' task.pk %}" class="btn btn-outline-success">Edit</a>
+    <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete</a>
     <br><br>
-    <hr><br>
+    <hr>
+    <br>
 
 
     <!-- the following code is for the like button, which isn't used in this app for now.
@@ -109,10 +110,10 @@
 </form>
 -->
 
-{% else %}
-<h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>
-{% endif %}
-{% endif %}
+    {% else %}
+    <h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>
+    {% endif %}
+    {% endif %}
 </div>
 
 {% endblock %}
