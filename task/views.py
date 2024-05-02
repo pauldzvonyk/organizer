@@ -2,8 +2,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Task, Category, Comment
 from .forms import TaskForm, EditForm, AddComment
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_POST
 
 
 def landing_page(request):
@@ -128,6 +129,14 @@ class AllTasksView(CategoryMixin, ListView):
 class TaskDetailView(CategoryMixin, DetailView):
     model = Task
     template_name = 'task/task_detail.html'
+
+
+@require_POST
+def increment_progress(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.progress += 1
+    task.save()
+    return redirect('task-detail', pk=pk)
 
 
 class AddTaskView(CreateView):

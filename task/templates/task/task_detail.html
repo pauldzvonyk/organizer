@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
+
 <div class="container-fluid border mt-2">
     <div class="row border">
         <div class="col-md-9">
@@ -15,8 +16,21 @@
                 <br>
             <h4 class="text-center">{{ current_progress_data.text }}</h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="{% static current_progress_data.image_url %}" alt="Progress Image" class="img-fluid">
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ task.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Your progress level is: {{ task.progress }} out of 10, keep crushing it!
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -27,6 +41,53 @@
             {% endif %}
         </div>
     </div>
+    Each task is divided in 10 subtasks, to complete the main Task and grow the tree, you need to enter a short
+    description for each subtask, once the subtask is complete, click the checkbox, and proceed to the next subtask.
+    <hr>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with radio button"
+                       placeholder="Subtask description min 10 characters">
+                <div class="input-group-text" {% if task.progress >= 1 %} style="display: none;"{% endif %}>
+                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
+                           aria-label="Radio button for following text input" name="radioInput">
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with radio button"
+                       placeholder="Subtask description min 10 characters">
+                <div class="input-group-text" {% if task.progress >= 2 %} style="display: none;"{% endif %}>
+                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
+                           aria-label="Radio button for following text input" name="radioInput">
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with radio button"
+                       placeholder="Subtask description min 10 characters">
+                <div class="input-group-text" {% if task.progress >= 3 %} style="display: none;"{% endif %}>
+                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
+                           aria-label="Radio button for following text input" name="radioInput">
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <hr>
     <p>
         {% if task.image_header %}
@@ -115,5 +176,7 @@
     {% endif %}
     {% endif %}
 </div>
+
+
 
 {% endblock %}
