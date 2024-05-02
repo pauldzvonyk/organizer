@@ -44,44 +44,37 @@
     Each task is divided in 10 subtasks, to complete the main Task and grow the tree, you need to enter a short
     description for each subtask, once the subtask is complete, click the checkbox, and proceed to the next subtask.
     <hr>
-
-    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Text input with radio button"
                        placeholder="Subtask description min 10 characters">
-                <div class="input-group-text" {% if task.progress >= 1 %} style="display: none;"{% endif %}>
-                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
-                           aria-label="Radio button for following text input" name="radioInput">
+                <div class="input-group-text" {% if task.progress == 0 %}style="display: block;"{% else %}style="display: none"{% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
         </div>
     </form>
-    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Text input with radio button"
                        placeholder="Subtask description min 10 characters">
-                <div class="input-group-text" {% if task.progress >= 2 %} style="display: none;"{% endif %}>
-                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
-                           aria-label="Radio button for following text input" name="radioInput">
+                <div class="input-group-text" {% if task.progress == 1 %}style="display: block;"{% else %}style="display: none"{% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
         </div>
     </form>
-    <form method="post" action="{% url 'increment-progress' task.pk %}" {% if task.progress >= 1 %}disabled{% endif %}>
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Text input with radio button"
                        placeholder="Subtask description min 10 characters">
-                <div class="input-group-text" {% if task.progress >= 3 %} style="display: none;"{% endif %}>
-                    <input class="form-check-input mt-0 me-2" type="radio" value="increment_progress"
-                           aria-label="Radio button for following text input" name="radioInput">
+                <div class="input-group-text" {% if task.progress == 2 %}style="display: block;"{% else %}style="display: none"{% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
@@ -176,7 +169,6 @@
     {% endif %}
     {% endif %}
 </div>
-
 
 
 {% endblock %}
