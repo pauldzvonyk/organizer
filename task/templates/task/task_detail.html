@@ -8,7 +8,7 @@
         <div class="col-md-9">
             {% if user.is_authenticated %}
             {% if user.id == task.author.id %}
-            <h1 class="text-center text-success">{{ task.title }}</h1>
+            <h1 class="text-center text-success">{{ task.title.capitalize }}</h1>
             <p class="small text-muted text-center">
                 By: {{ task.author.first_name }}
                 <br>
@@ -49,8 +49,10 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_1" aria-label="Text input with radio button"
-                       placeholder="Subtask description min 10 characters" value="{{ task.subtask_text_1 }}">
-                <div class="input-group-text" {% if task.progress == 0 %}style="display: block;"{% else %}style="display: none"{% endif %}>
+                       {% if not task.subtask_text_1 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_1 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 0 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
@@ -62,8 +64,10 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_2" aria-label="Text input with radio button"
-                       placeholder="Subtask description min 10 characters" value="{{ task.subtask_text_2 }}">
-                <div class="input-group-text" {% if task.progress == 1 %}style="display: block;"{% else %}style="display: none"{% endif %}>
+                       {% if not task.subtask_text_2 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_2 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 1 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
@@ -73,13 +77,15 @@
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
     </form>
 
-     <form method="post" action="{% url 'increment-progress' task.pk %}">
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_3" aria-label="Text input with radio button"
-                       placeholder="Subtask description min 10 characters" value="{{ task.subtask_text_3 }}">
-                <div class="input-group-text" {% if task.progress == 2 %}style="display: block;"{% else %}style="display: none"{% endif %}>
+                       {% if not task.subtask_text_3 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_3 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 2 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
                 </div>
             </div>
@@ -87,6 +93,160 @@
         <!-- Include hidden input field for subtask_text_1 & 2-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_4" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_4 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_4 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 3 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2 & 3-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_5" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_5 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_5 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 4 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_6" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_6 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_6 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 5 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+        <input type="hidden" name="subtask_text_5" value="{{ task.subtask_text_5 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_7" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_7 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_7 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 6 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+        <input type="hidden" name="subtask_text_5" value="{{ task.subtask_text_5 }}">
+        <input type="hidden" name="subtask_text_6" value="{{ task.subtask_text_6 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_8" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_8 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_8 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 7 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+        <input type="hidden" name="subtask_text_5" value="{{ task.subtask_text_5 }}">
+        <input type="hidden" name="subtask_text_6" value="{{ task.subtask_text_6 }}">
+        <input type="hidden" name="subtask_text_7" value="{{ task.subtask_text_7 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_9" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_9 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_9 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 8 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+        <input type="hidden" name="subtask_text_5" value="{{ task.subtask_text_5 }}">
+        <input type="hidden" name="subtask_text_6" value="{{ task.subtask_text_6 }}">
+        <input type="hidden" name="subtask_text_7" value="{{ task.subtask_text_7 }}">
+        <input type="hidden" name="subtask_text_8" value="{{ task.subtask_text_8 }}">
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_10" aria-label="Text input with radio button"
+                       {% if not task.subtask_text_10 %} placeholder="Subtask description min 10 characters" {% else %}
+                       value="{{ task.subtask_text_10 }}" readonly {% endif %}>
+                <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
+                     style="display: none" {% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+        <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
+        <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
+        <input type="hidden" name="subtask_text_4" value="{{ task.subtask_text_4 }}">
+        <input type="hidden" name="subtask_text_5" value="{{ task.subtask_text_5 }}">
+        <input type="hidden" name="subtask_text_6" value="{{ task.subtask_text_6 }}">
+        <input type="hidden" name="subtask_text_7" value="{{ task.subtask_text_7 }}">
+        <input type="hidden" name="subtask_text_8" value="{{ task.subtask_text_8 }}">
+        <input type="hidden" name="subtask_text_9" value="{{ task.subtask_text_9 }}">
     </form>
 
 
