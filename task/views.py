@@ -139,10 +139,12 @@ def increment_progress(request, pk):
     # Extract subtask_text values directly from the request.POST data
     subtask_text_1 = request.POST.get('subtask_text_1')
     subtask_text_2 = request.POST.get('subtask_text_2')
+    subtask_text_3 = request.POST.get('subtask_text_3')
 
     # Update the corresponding fields of the task object with the extracted values
     task.subtask_text_1 = subtask_text_1
     task.subtask_text_2 = subtask_text_2
+    task.subtask_text_3 = subtask_text_3
 
     # Save the updated task object
     task.save()
