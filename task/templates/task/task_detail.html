@@ -14,7 +14,8 @@
                 <br>
                 Created on {{ task.date_created }}
                 <br>
-            <h4 class="text-center">{{ current_progress_data.text }}</h4>
+            <h4 class="text-center text-primary">Follow guidelines to help you decide what your next step should be:</h4>
+            <h4 class="text-center text-danger text-decoration-underline">"{{ current_progress_data.text }}"</h4>
         </div>
         <div class="col-md-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="{% static current_progress_data.image_url %}" alt="Progress Image" class="img-fluid">
@@ -41,8 +42,8 @@
             {% endif %}
         </div>
     </div>
-    Each task is divided in 10 subtasks, to complete the main Task and grow the tree, you need to enter a short
-    description for each subtask, once the subtask is complete, click the checkbox, and proceed to the next subtask.
+    Each task is divided in 10 steps, to complete the main Task and grow the tree, you need to enter a short
+    description for each step, once the subtask is complete, click 'Done' button, and proceed to the next step.
     <hr>
     <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
