@@ -133,10 +133,24 @@ class TaskDetailView(CategoryMixin, DetailView):
 
 @require_POST
 def increment_progress(request, pk):
-    task = Task.objects.get(pk=pk)
+    task = get_object_or_404(Task, pk=pk)
     task.progress += 1
+
+    # Extract subtask_text values directly from the request.POST data
+    subtask_text_1 = request.POST.get('subtask_text_1')
+    subtask_text_2 = request.POST.get('subtask_text_2')
+
+    # Update the corresponding fields of the task object with the extracted values
+    task.subtask_text_1 = subtask_text_1
+    task.subtask_text_2 = subtask_text_2
+
+    # Save the updated task object
     task.save()
+
     return redirect('task-detail', pk=pk)
+
+
+
 
 
 class AddTaskView(CreateView):
@@ -156,7 +170,7 @@ class AddCategoryView(CategoryMixin, CreateView):
     # fields = ('title', 'author', 'short_description', 'progress')
 
 
-class AddCommentView(CategoryMixin, CreateView):
+class AddCommentView(CreateView):
     model = Comment
     form_class = AddComment
     template_name = 'task/add_comment.html'

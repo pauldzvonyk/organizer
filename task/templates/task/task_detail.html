@@ -48,7 +48,37 @@
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Text input with radio button"
+                <input type="text" class="form-control" name="subtask_text_1" aria-label="Text input with radio button"
+                       placeholder="Subtask description min 10 characters">
+                <div class="input-group-text" {% if task.progress == 0 %}style="display: block;"{% else %}style="display: none"{% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_2" aria-label="Text input with radio button"
+                       placeholder="Subtask description min 10 characters">
+                <div class="input-group-text" {% if task.progress == 1 %}style="display: block;"{% else %}style="display: none"{% endif %}>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include hidden input field for subtask_text_1 -->
+        <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
+    </form>
+
+
+    <form method="post" action="{% url 'increment-progress' task.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="subtask_text_1" aria-label="Text input with radio button"
                        placeholder="Subtask description min 10 characters">
                 <div class="input-group-text" {% if task.progress == 0 %}style="display: block;"{% else %}style="display: none"{% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
@@ -60,7 +90,7 @@
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Text input with radio button"
+                <input type="text" class="form-control" name="subtask_text_2" aria-label="Text input with radio button"
                        placeholder="Subtask description min 10 characters">
                 <div class="input-group-text" {% if task.progress == 1 %}style="display: block;"{% else %}style="display: none"{% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
