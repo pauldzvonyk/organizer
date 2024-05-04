@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def landing_page(request):
@@ -186,9 +187,6 @@ def increment_progress(request, pk):
     return redirect('task-detail', pk=pk)
 
 
-
-
-
 class AddTaskView(CreateView):
     model = Task
     form_class = TaskForm
@@ -199,7 +197,7 @@ class AddTaskView(CreateView):
     # fields = ('title', 'author', 'short_description', 'progress')
 
 
-class AddCategoryView(CategoryMixin, CreateView):
+class AddCategoryView(CreateView):
     model = Category
     template_name = 'task/add_category.html'
     fields = '__all__'
