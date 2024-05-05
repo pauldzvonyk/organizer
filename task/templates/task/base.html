@@ -47,9 +47,11 @@
                         Categories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                         {% for category in categories %}
                             <li><a class="dropdown-item" href="{% url 'category' category|slugify %}">{{ category }}</a></li>
                         {% endfor %}
+
                     </ul>
                 </li>
                 {% else %}

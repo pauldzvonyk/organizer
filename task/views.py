@@ -39,6 +39,7 @@ def LikeView(request, pk):
 class CategoryMixin:
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+
         cat_list = Task.objects.all()
         if cat_list.exists():
             context['cat_list'] = cat_list
@@ -129,7 +130,8 @@ class CategoryMixin:
         #     context['total_likes'] = total_likes
         #     context['liked'] = liked
 
-        categories = Task.objects.order_by('category').values_list('category', flat=True).distinct()
+        tasks = Task.objects.filter(author=self.request.user)
+        categories = tasks.order_by('category').values_list('category', flat=True).distinct()
         context['categories'] = categories
 
         return context
