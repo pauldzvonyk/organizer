@@ -129,6 +129,9 @@ class CategoryMixin:
         #     context['total_likes'] = total_likes
         #     context['liked'] = liked
 
+        categories = Task.objects.order_by('category').values_list('category', flat=True).distinct()
+        context['categories'] = categories
+
         return context
 
     def get_task(self):
