@@ -19,6 +19,7 @@
                 <div class="card-body col-md-9">
                     <p><a class="fs-3 fw-bold text-success" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                         &nbsp;&nbsp;({{ task.date_created }})</p>
+
                     <p class="card-text">See all tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
                     <p class="card-text">{{ task.snippet|truncatechars:100 }}</p>
                     <div>
