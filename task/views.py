@@ -1,11 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Task, Category, Comment
+from .models import Task, Comment
 from .forms import TaskForm, EditForm, AddComment
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def landing_page(request):
@@ -39,9 +38,21 @@ def LikeView(request, pk):
 
 class CategoryMixin:
     def get_context_data(self, *args, **kwargs):
-        cat_list = Category.objects.all()
+        cat_list = Task.objects.all()
         context = super().get_context_data(*args, **kwargs)
         context['cat_list'] = cat_list
+
+        unique_categories = set()
+        user = self.request.user
+        filtered_tasks = []
+
+        for task in context['object_list']:
+            if user.id == task.author.id:
+                if task.category not in unique_categories:
+                    unique_categories.add(task.category)
+                    filtered_tasks.append(task)
+
+        context['filtered_tasks'] = filtered_tasks
 
         task = self.get_task()
 
@@ -194,13 +205,6 @@ class AddTaskView(CreateView):
     success_url = reverse_lazy('all-tasks')
 
     # fields = '__all__'
-    # fields = ('title', 'author', 'short_description', 'progress')
-
-
-class AddCategoryView(CreateView):
-    model = Category
-    template_name = 'task/add_category.html'
-    fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'progress')
 
 

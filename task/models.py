@@ -4,16 +4,6 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 
-class Category(models.Model):
-    category_name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.category_name
-
-    def get_absolute_url(self):
-        return reverse('home')
-
-
 class Task(models.Model):
     title = models.CharField(max_length=200)
     title_tag = models.CharField(max_length=200)

@@ -1,14 +1,14 @@
 from django import forms
-from .models import Task, Category, Comment
+from .models import Task, Comment
 
 # hard-coded variable assignment syntax and django format
 # choice = [('work', 'work'), ('sport', 'sport'), ('family', 'family')]
-choice_list = Category.objects.all().values_list('category_name', 'category_name')
-
-choice = []
-
-for item in choice_list:
-    choice.append(item)
+# choice_list = Category.objects.all().values_list('category_name', 'category_name')
+#
+# choice = []
+#
+# for item in choice_list:
+#     choice.append(item)
 
 
 class TaskForm(forms.ModelForm):

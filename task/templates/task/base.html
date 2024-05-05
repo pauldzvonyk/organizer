@@ -48,11 +48,9 @@
                         Categories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% for item in cat_list %}
-                        <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
+                        {% for task in filtered_tasks %}
+                            <li><a class="dropdown-item" href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></li>
                         {% endfor %}
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'add_category' %}">New Category</a></li>
                     </ul>
                 </li>
                 {% endif %}
