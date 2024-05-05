@@ -42,17 +42,17 @@ class CategoryMixin:
         context = super().get_context_data(*args, **kwargs)
         context['cat_list'] = cat_list
 
-        unique_categories = set()
-        user = self.request.user
-        filtered_tasks = []
-
-        for task in context['object_list']:
-            if user.id == task.author.id:
-                if task.category not in unique_categories:
-                    unique_categories.add(task.category)
-                    filtered_tasks.append(task)
-
-        context['filtered_tasks'] = filtered_tasks
+        # unique_categories = set()
+        # user = self.request.user
+        # filtered_tasks = []
+        #
+        # for task in context['object_list']:
+        #     if user.id == task.author.id:
+        #         if task.category not in unique_categories:
+        #             unique_categories.add(task.category)
+        #             filtered_tasks.append(task)
+        #
+        # context['filtered_tasks'] = filtered_tasks
 
         task = self.get_task()
 

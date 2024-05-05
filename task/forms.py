@@ -3,7 +3,7 @@ from .models import Task, Comment
 
 # hard-coded variable assignment syntax and django format
 # choice = [('work', 'work'), ('sport', 'sport'), ('family', 'family')]
-# choice_list = Category.objects.all().values_list('category_name', 'category_name')
+# choice_list = Task.objects.all().values_list('category_name', 'category_name')
 #
 # choice = []
 #
@@ -21,7 +21,7 @@ class TaskForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(
                 attrs={'class': 'form-control', 'value': '', 'id': 'js_tweak_id', 'type': 'hidden'}),
-            'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'progress': forms.TextInput(attrs={'class': 'form-control'}),
@@ -38,7 +38,7 @@ class EditForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),
-            'category': forms.Select(choices=choice, attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
             'progress': forms.TextInput(attrs={'class': 'form-control'}),
