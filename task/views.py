@@ -134,6 +134,10 @@ class CategoryMixin:
         categories = tasks.order_by('category').values_list('category', flat=True).distinct()
         context['categories'] = categories
 
+        if self.request.user.is_authenticated:
+            user_task_count = Task.objects.filter(author=self.request.user).count()
+            context['user_task_count'] = user_task_count
+
         return context
 
     def get_task(self):
