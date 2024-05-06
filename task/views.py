@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import Task, Comment
 from .forms import TaskForm, EditForm, AddComment
 from django.urls import reverse_lazy, reverse
@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 
 def landing_page(request):
     return render(request, 'task/home.html')
+
 
 
 def search_task(request):
@@ -35,6 +36,90 @@ def LikeView(request, pk):
 
 """CategoryMixin class is necessary to view DYNAMIC category dropdown menu in a navbar"""
 
+class ProgressMixin:
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        task = self.get_task()
+        if task:
+            progress_data = {
+                0: {
+                    'text': "Define your goal clearly. Whether it's writing a novel, learning a new skill, or completing "
+                            "a project, clarity is key.",
+                    'image_url': 'task/images/seed.png',
+                    'progress_bar': '<div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" '
+                                    'aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>',
+                    },
+                1: {'text': "Break down your goal into smaller, manageable tasks. This makes it less overwhelming and "
+                            "more achievable.",
+                    'image_url': 'task/images/tree01.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 10%" '
+                                    'aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>',
+                    },
+                2: {'text': "Create a timeline or schedule for completing each task. Setting deadlines helps keep you "
+                            "accountable and on track.",
+                    'image_url': 'task/images/tree02.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 20%" '
+                                    'aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>',
+                    },
+                3: {'text': "Gather any necessary resources or materials needed to accomplish your goal. This might "
+                            "include books, software, or other tools.",
+                    'image_url': 'task/images/tree03.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 30%" '
+                                    'aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>',
+                    },
+                4: {
+                    'text': "Start with the first task on your list. Take that initial step forward, no matter how small "
+                            "it may seem.",
+                    'image_url': 'task/images/tree04.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 40%" '
+                                    'aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>',
+                    },
+                5: {
+                    'text': "Stay organized throughout the process. Keep track of your progress and adjust your plan as "
+                            "needed.",
+                    'image_url': 'task/images/tree05.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 50%" '
+                                    'aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>',
+                    },
+                6: {'text': "Don't be afraid to ask for help if you get stuck. Seek guidance from friends, colleagues, "
+                            "or online communities.",
+                    'image_url': 'task/images/tree06.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 60%" '
+                                    'aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>',
+                    },
+                7: {
+                    'text': "Stay focused and motivated. Remind yourself why you're pursuing this goal and celebrate your "
+                            "achievements along the way.",
+                    'image_url': 'task/images/tree07.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 70%" '
+                                    'aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>',
+                    },
+                8: {'text': "Keep pushing forward, even when faced with challenges or setbacks. Perseverance is key to "
+                            "reaching your goal.",
+                    'image_url': 'task/images/tree08.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 80%" '
+                                    'aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>',
+                    },
+                9: {
+                    'text': "You're almost there, just one more push! Keep going until you've successfully completed your "
+                            "task or achieved your goal. You can do it!",
+                    'image_url': 'task/images/tree09.PNG',
+                    'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
+                                    'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
+                    },
+                10: {'text': "",
+                     'image_url': 'task/images/tree10.PNG',
+                     'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
+                                     'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
+                     },
+            }
+
+            current_progress_data = progress_data.get(task.progress, {})
+
+            context['current_progress_data'] = current_progress_data
+        return context
+
 
 class CategoryMixin:
     def get_context_data(self, *args, **kwargs):
@@ -43,80 +128,6 @@ class CategoryMixin:
         cat_list = Task.objects.all()
         if cat_list.exists():
             context['cat_list'] = cat_list
-
-            task = self.get_task()
-            if task:
-                progress_data = {
-                    0: {'text': "Define your goal clearly. Whether it's writing a novel, learning a new skill, or completing "
-                                "a project, clarity is key.",
-                        'image_url': 'task/images/seed.png',
-                        'progress_bar': '<div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" '
-                                        'aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>',
-                        },
-                    1: {'text': "Break down your goal into smaller, manageable tasks. This makes it less overwhelming and "
-                                "more achievable.",
-                        'image_url': 'task/images/tree01.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 10%" '
-                                        'aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>',
-                        },
-                    2: {'text': "Create a timeline or schedule for completing each task. Setting deadlines helps keep you "
-                                "accountable and on track.",
-                        'image_url': 'task/images/tree02.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 20%" '
-                                        'aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>',
-                        },
-                    3: {'text': "Gather any necessary resources or materials needed to accomplish your goal. This might "
-                                "include books, software, or other tools.",
-                        'image_url': 'task/images/tree03.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 30%" '
-                                        'aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>',
-                        },
-                    4: {'text': "Start with the first task on your list. Take that initial step forward, no matter how small "
-                                "it may seem.",
-                        'image_url': 'task/images/tree04.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 40%" '
-                                        'aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>',
-                        },
-                    5: {'text': "Stay organized throughout the process. Keep track of your progress and adjust your plan as "
-                                "needed.",
-                        'image_url': 'task/images/tree05.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 50%" '
-                                        'aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>',
-                        },
-                    6: {'text': "Don't be afraid to ask for help if you get stuck. Seek guidance from friends, colleagues, "
-                                "or online communities.",
-                        'image_url': 'task/images/tree06.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 60%" '
-                                        'aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>',
-                        },
-                    7: {'text': "Stay focused and motivated. Remind yourself why you're pursuing this goal and celebrate your "
-                                "achievements along the way.",
-                        'image_url': 'task/images/tree07.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 70%" '
-                                        'aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>',
-                        },
-                    8: {'text': "Keep pushing forward, even when faced with challenges or setbacks. Perseverance is key to "
-                                "reaching your goal.",
-                        'image_url': 'task/images/tree08.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 80%" '
-                                        'aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>',
-                        },
-                    9: {'text': "You're almost there, just one more push! Keep going until you've successfully completed your "
-                                "task or achieved your goal. You can do it!",
-                        'image_url': 'task/images/tree09.PNG',
-                        'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
-                                        'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
-                        },
-                    10: {'text': "",
-                         'image_url': 'task/images/tree10.PNG',
-                         'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
-                                         'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
-                         },
-                }
-
-                current_progress_data = progress_data.get(task.progress, {})
-
-                context['current_progress_data'] = current_progress_data
 
         # This part is only needed for DetailView Likes functionality
         # if hasattr(self, 'object'):
@@ -130,12 +141,12 @@ class CategoryMixin:
         #     context['total_likes'] = total_likes
         #     context['liked'] = liked
 
-        tasks = Task.objects.filter(author=self.request.user)
-        categories = tasks.order_by('category').values_list('category', flat=True).distinct()
-        context['categories'] = categories
-
         if self.request.user.is_authenticated:
-            user_task_count = Task.objects.filter(author=self.request.user).count()
+            user_tasks = Task.objects.filter(author=self.request.user)
+            categories = user_tasks.order_by('category').values_list('category', flat=True).distinct()
+            context['categories'] = categories
+
+            user_task_count = user_tasks.count()
             context['user_task_count'] = user_task_count
 
         return context
@@ -150,13 +161,13 @@ class CategoryMixin:
             raise AttributeError("Cannot determine the type of view.")
 
 
-class AllTasksView(CategoryMixin, ListView):
+class AllTasksView(ProgressMixin, CategoryMixin, ListView):
     model = Task
     template_name = 'task/all_tasks.html'
     ordering = ['-date_created']
 
 
-class TaskDetailView(CategoryMixin, DetailView):
+class TaskDetailView(ProgressMixin, CategoryMixin, DetailView):
     model = Task
     template_name = 'task/task_detail.html'
 
@@ -201,6 +212,11 @@ class AddTaskView(CategoryMixin, CreateView):
     form_class = TaskForm
     template_name = 'task/add_task.html'
     success_url = reverse_lazy('all-tasks')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  # Pass the current user to the form
+        return kwargs
 
     # fields = '__all__'
     # fields = ('title', 'author', 'short_description', 'progress')

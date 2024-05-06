@@ -6,9 +6,10 @@ from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm, CreateProfileForm
 from task.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
+from task.views import CategoryMixin
 
 
-class CreateProfilePageView(CreateView):
+class CreateProfilePageView(CategoryMixin, CreateView):
     model = Profile
     form_class = CreateProfileForm
     template_name = 'registration/create_profile_page.html'
@@ -21,7 +22,7 @@ class CreateProfilePageView(CreateView):
         return super().form_valid(form)
 
 
-class EditProfilePageView(LoginRequiredMixin, generic.UpdateView):
+class EditProfilePageView(CategoryMixin, LoginRequiredMixin, generic.UpdateView):
     model = Profile
     template_name = 'registration/edit_profile_page.html'
     fields = '__all__'
@@ -32,7 +33,7 @@ class EditProfilePageView(LoginRequiredMixin, generic.UpdateView):
         return self.request.user.profile
 
 
-class ProfilePageView(DetailView):
+class ProfilePageView(CategoryMixin, DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
 
@@ -50,7 +51,7 @@ class UserRegistrationView(generic.CreateView):
     success_url = reverse_lazy('login')
 
 
-class ProfileUpdateView(generic.UpdateView):
+class ProfileUpdateView(CategoryMixin, generic.UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('home')
