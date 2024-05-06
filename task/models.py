@@ -27,10 +27,6 @@ class Task(models.Model):
     subtask_text_9 = models.CharField(max_length=200, blank=True, null=True)
     subtask_text_10 = models.CharField(max_length=200, blank=True, null=True)
     completed = models.BooleanField(default=False)
-    likes = models.ManyToManyField(User, related_name='task_likes')
-
-    def total_likes(self):
-        return self.likes.count()
 
     def __str__(self):
         return f"{self.title} (Published by: '{self.author}' on {self.date_created})"
