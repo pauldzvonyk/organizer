@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2 & 3-->
+        <!-- Include hidden input field for subtask_text_1 to 3-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -128,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 4-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 5-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 6-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 7-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -214,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 8-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <!-- Include hidden input field for subtask_text_1, 2, 3 & 4-->
+        <!-- Include hidden input field for subtask_text_1 to 9-->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
         <input type="hidden" name="subtask_text_2" value="{{ task.subtask_text_2 }}">
         <input type="hidden" name="subtask_text_3" value="{{ task.subtask_text_3 }}">
@@ -317,22 +317,6 @@
     <br><br>
     <hr>
     <br>
-
-
-    <!-- the following code is for the like button, which isn't used in this app for now.
-<form action="{% url 'like_task' task.pk %}" method="POST">
-    {% csrf_token %}
-    {% if user.is_authenticated %}
-    {% if liked %}
-    <button type="submit" name="task_id" value="{{ task.id }}" class="btn btn-danger btn-sm">Unlike</button> - {{ total_likes }} Likes
-    {% else %}
-    <button type="submit" name="task_id" value="{{ task.id }}" class="btn btn-primary btn-sm">Like</button> - {{ total_likes }} Likes
-    {% endif %}
-    {% else %}
-    <small> <a href="{% url 'login' %}">Login</a> to like</small>
-    {% endif %}
-</form>
--->
 
     {% else %}
     <h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>

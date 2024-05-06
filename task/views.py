@@ -7,34 +7,11 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 
 
-# def landing_page(request):
-#     return render(request, 'task/home.html')
-#
-#
-#
-# def search_task(request):
-#     if request.method == 'POST':
-#         searched = request.POST['search-for']
-#         all_searched = Task.objects.filter(title__contains=searched)
-#         return render(request, 'task/search_task.html',
-#                       {'searched': searched, 'all_searched': all_searched})
-#     else:
-#         return render(request, 'task/search_task.html')
+"""
+   CategoryMixin -> DYNAMIC navbar category dropdown menu + AddTask & EditTask category choice.
+   ProgressMixin -> DYNAMIC progress_data assignment in AllTasks & TaskDetail views
+"""
 
-
-def LikeView(request, pk):
-    task = get_object_or_404(Task, id=request.POST.get('task_id'))
-    liked = False
-    if task.likes.filter(id=request.user.id).exists():
-        task.likes.remove(request.user)
-        liked = False
-    else:
-        task.likes.add(request.user)
-        liked = True
-    return HttpResponseRedirect(reverse('task-detail', args=[str(pk)]))
-
-
-"""CategoryMixin class is necessary to view DYNAMIC category dropdown menu in a navbar"""
 
 class ProgressMixin:
     def get_context_data(self, *args, **kwargs):
@@ -129,18 +106,6 @@ class CategoryMixin:
         if cat_list.exists():
             context['cat_list'] = cat_list
 
-        # This part is only needed for DetailView Likes functionality
-        # if hasattr(self, 'object'):
-        #     db_likes = get_object_or_404(Task, id=self.object.pk)
-        #     total_likes = db_likes.total_likes()
-        #
-        #     liked = False
-        #     if db_likes.likes.filter(id=self.request.user.id).exists():
-        #         liked = True
-        #
-        #     context['total_likes'] = total_likes
-        #     context['liked'] = liked
-
         if self.request.user.is_authenticated:
             user_tasks = Task.objects.filter(author=self.request.user)
             categories = user_tasks.order_by('category').values_list('category', flat=True).distinct()
@@ -178,7 +143,6 @@ class SearchTaskView(CategoryMixin, TemplateView):
     def get(self, request):
         context = self.get_context_data()
         return render(request, 'task/search_task.html', context=context)
-
 
 
 class AllTasksView(ProgressMixin, CategoryMixin, ListView):
