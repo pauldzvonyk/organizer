@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Task, Comment
 from .forms import TaskForm, EditForm, AddComment
 from django.urls import reverse_lazy, reverse
@@ -7,19 +7,19 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 
 
-def landing_page(request):
-    return render(request, 'task/home.html')
-
-
-
-def search_task(request):
-    if request.method == 'POST':
-        searched = request.POST['search-for']
-        all_searched = Task.objects.filter(title__contains=searched)
-        return render(request, 'task/search_task.html',
-                      {'searched': searched, 'all_searched': all_searched})
-    else:
-        return render(request, 'task/search_task.html')
+# def landing_page(request):
+#     return render(request, 'task/home.html')
+#
+#
+#
+# def search_task(request):
+#     if request.method == 'POST':
+#         searched = request.POST['search-for']
+#         all_searched = Task.objects.filter(title__contains=searched)
+#         return render(request, 'task/search_task.html',
+#                       {'searched': searched, 'all_searched': all_searched})
+#     else:
+#         return render(request, 'task/search_task.html')
 
 
 def LikeView(request, pk):
@@ -159,6 +159,26 @@ class CategoryMixin:
             return queryset.first() if queryset.exists() else None
         else:
             raise AttributeError("Cannot determine the type of view.")
+
+
+class LandingPageView(CategoryMixin, TemplateView):
+    def get(self, request):
+        context = self.get_context_data()
+        return render(request, 'task/home.html', context=context)
+
+
+class SearchTaskView(CategoryMixin, TemplateView):
+    def post(self, request):
+        searched = request.POST.get('search-for')
+        all_searched = Task.objects.filter(title__icontains=searched)
+        context = {'searched': searched, 'all_searched': all_searched}
+        context.update(self.get_context_data())
+        return render(request, 'task/search_task.html', context=context)
+
+    def get(self, request):
+        context = self.get_context_data()
+        return render(request, 'task/search_task.html', context=context)
+
 
 
 class AllTasksView(ProgressMixin, CategoryMixin, ListView):

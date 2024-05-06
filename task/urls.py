@@ -1,10 +1,10 @@
 from django.urls import path
 from .views import (AllTasksView, TaskDetailView, AddTaskView, EditTaskView, DeleteTaskView, CategoryView,
-                    LikeView, AddCommentView, landing_page, search_task, increment_progress)
+                    LikeView, AddCommentView, LandingPageView, SearchTaskView, increment_progress)
 
 urlpatterns = [
-    path('', landing_page, name='home'),
-    path('search_task', search_task, name='search-task'),
+    path('', LandingPageView.as_view(), name='home'),
+    path('search_task', SearchTaskView.as_view(), name='search-task'),
     path('all_tasks/', AllTasksView.as_view(), name='all-tasks'),
     path('task/<int:pk>', TaskDetailView.as_view(), name='task-detail'),
     path('task/<int:pk>/increment-progress/', increment_progress, name='increment-progress'),
