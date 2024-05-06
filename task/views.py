@@ -196,7 +196,7 @@ def increment_progress(request, pk):
     return redirect('task-detail', pk=pk)
 
 
-class AddTaskView(CreateView):
+class AddTaskView(CategoryMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task/add_task.html'
@@ -206,7 +206,7 @@ class AddTaskView(CreateView):
     # fields = ('title', 'author', 'short_description', 'progress')
 
 
-class AddCommentView(CreateView):
+class AddCommentView(CategoryMixin, CreateView):
     model = Comment
     form_class = AddComment
     template_name = 'task/add_comment.html'

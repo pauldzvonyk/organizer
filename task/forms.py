@@ -6,9 +6,10 @@ class TaskForm(forms.ModelForm):
     new_category = forms.CharField(max_length=200, required=False, label='New Category')
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Get the current user from the kwargs
         super(TaskForm, self).__init__(*args, **kwargs)
-        # Get all distinct categories from the Task model
-        categories = Task.objects.order_by('category').values_list('category', flat=True).distinct()
+        # Filter categories based on the current user's tasks
+        categories = Task.objects.filter(author=user).order_by('category').values_list('category', flat=True).distinct()
         # Create a list of tuples for choices, including the default value and existing categories
         category_choices = [(category, category) for category in categories]
         # If 'uncategorized' is not already in the list, include it
