@@ -243,11 +243,15 @@ class CategoryView(CategoryMixin, ListView):
 class EditTaskView(CategoryMixin, UpdateView):
     model = Task
     form_class = EditForm
-    # no need to define form_class, as it has already been taken care of with UpdateView
     template_name = 'task/edit_task.html'
 
     def get_success_url(self):
         return reverse_lazy('task-detail', kwargs={'pk': self.kwargs['pk']})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  # Pass the current user to the form
+        return kwargs
 
 
 class DeleteTaskView(CategoryMixin, DeleteView):
