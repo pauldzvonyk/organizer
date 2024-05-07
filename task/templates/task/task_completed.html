@@ -7,7 +7,18 @@
 </head>
 
 {% block content %}
-<h1 class="text-center">You have successfully completed your task, well done!</h1>
+<h1 class="text-center">You have successfully completed {{ task.title }} task, well done!</h1>
+<h3 class="text-center">{{ task.subtask_text_1 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_2 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_3 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_4 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_5 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_6 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_7 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_8 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_9 }}</h3>
+<h3 class="text-center">{{ task.subtask_text_10 }}</h3>
+
 
 <!--https://picsum.photos/200/100-->
 {% endblock %}
