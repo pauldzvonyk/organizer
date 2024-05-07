@@ -7,17 +7,25 @@
 </head>
 
 {% block content %}
+
+{% with check_icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>' %}
+
+
+
 <h1 class="text-center">You have successfully completed {{ task.title }} task, well done!</h1>
-<h3 class="text-center">{{ task.subtask_text_1 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_2 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_3 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_4 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_5 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_6 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_7 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_8 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_9 }}</h3>
-<h3 class="text-center">{{ task.subtask_text_10 }}</h3>
+<h4 class="text-center text-success">{{ task.subtask_text_1 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_2 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_3 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_4 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_5 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_6 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_7 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_8 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_9 }} {{ check_icon }}</h4>
+<h4 class="text-center text-success">{{ task.subtask_text_10 }} {{ check_icon }}</h4>
+
+
+{% endwith %}
 
 
 <!--https://picsum.photos/200/100-->

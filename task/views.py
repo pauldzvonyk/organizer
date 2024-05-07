@@ -188,7 +188,7 @@ def increment_progress(request, pk):
     # Save the updated task object
     task.save()
 
-    if task.progress == 10:
+    if task.progress >= 10:
         return redirect('task-completed', pk=pk)
 
     return redirect('task-detail', pk=pk)
