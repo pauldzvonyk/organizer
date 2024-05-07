@@ -234,7 +234,7 @@
                        {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm" onclick="successPage">Submit</button>
                 </div>
             </div>
         </div>
@@ -249,7 +249,6 @@
         <input type="hidden" name="subtask_text_8" value="{{ task.subtask_text_8 }}">
         <input type="hidden" name="subtask_text_9" value="{{ task.subtask_text_9 }}">
     </form>
-
 
     <hr>
     <p>

@@ -258,3 +258,8 @@ class DeleteTaskView(CategoryMixin, DeleteView):
     model = Task
     template_name = 'task/delete_task.html'
     success_url = reverse_lazy('all-tasks')
+
+
+class TaskCompletedView(CategoryMixin, TemplateView):
+    model = Task
+    template_name = 'task/task_completed.html'
