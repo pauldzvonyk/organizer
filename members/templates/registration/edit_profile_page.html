@@ -7,12 +7,12 @@
 
 <h1>Edit Profile...!!!!!</h1>
 
-<div class="form-group">
+<div class="form-group mb-4">
     <form method="POST" class="submit_form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-secondary">Confirm</button>
-        <a href="{% url 'all-tasks' %}" class="btn btn-secondary">Back</a>
+        <button class="btn btn-outline-success">Confirm Changes</button>
+        <a href="{% url 'user_profile' user.pk %}" class="btn btn-outline-primary">Back To Profile</a>
     </form>
 </div>
 

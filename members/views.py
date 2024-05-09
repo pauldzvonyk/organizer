@@ -26,11 +26,14 @@ class EditProfilePageView(CategoryMixin, LoginRequiredMixin, generic.UpdateView)
     model = Profile
     template_name = 'registration/edit_profile_page.html'
     fields = '__all__'
-    success_url = reverse_lazy('home')
 
     def get_object(self, queryset=None):
         # Use the authenticated user's profile for editing
         return self.request.user.profile
+
+    def get_success_url(self):
+        # Redirect to the user's profile page after successful form submission
+        return reverse_lazy('user_profile', kwargs={'pk': self.request.user.pk})
 
 
 class ProfilePageView(CategoryMixin, DetailView):
