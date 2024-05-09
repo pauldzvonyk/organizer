@@ -35,7 +35,9 @@
     </div>
 </div>
 
-<a href="{% url 'edit_profile_page' profile.user.id %}">Edit Profile</a>
+<a href="{% url 'edit_profile_page' profile.user.id %}" class="btn btn-outline-success">Edit Profile</a>
+<a href="{% url 'all-tasks' %}" class="btn btn-outline-primary">Back To Tasks</a>
+
 {% else %}
 
 This page is dedicated for logged-in users only!
