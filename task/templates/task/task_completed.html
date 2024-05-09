@@ -34,19 +34,19 @@
 <hr>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 text-success">
             {% with check_icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>' %}
 
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_1 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_2 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_3 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_4 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_5 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_6 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_7 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_8 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_9 }}</h4>
-            <h4 class="text-success ps-2">{{ check_icon }} {{ task.subtask_text_10 }}</h4>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_1|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_2|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_3|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_4|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_5|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_6|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_7|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_8|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_9|truncatechars:100 }}</h5>
+            <h5 class="ps-2">{{ check_icon }} {{ task.subtask_text_10|truncatechars:100 }}</h5>
 
             {% endwith %}
         </div>
@@ -73,7 +73,7 @@
     <div class="row">
         <div class="col-md-8 text-center">
             <a href="{% url 'add_task' %}" class="btn btn-success btn-lg my-1">Start New Task</a>
-            <a href="{% url 'all-tasks' %}" class="btn btn-secondary btn-lg my-1">Back To All Tasks</a>
+            <a href="{% url 'task-detail' task.pk %}" class="btn btn-secondary btn-lg my-1">Back To Details</a>
             <a href="{% url 'delete_task' task.pk %}" class="btn btn-danger btn-lg my-1">Delete This Task</a>
         </div>
         <div class="col-md-4 text-center">
