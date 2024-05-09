@@ -7,7 +7,111 @@
 </head>
 
 {% block content %}
-<h1 class="text-center">You have successfully completed your task, well done!</h1>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Video Background -->
+            <div class="ratio ratio-16x9" style="position: relative;">
+                <video autoplay muted loop id="video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    <source src="{% static 'task/video/closing_video.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- Content Over Video -->
+            <div class="content-over-video" style="position: absolute; top: 2rem; left: 0; width: 100%; padding: 50px; text-align: center;">
+                {% with check_icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>' %}
+
+                <h1 class="text-center text-white" style="margin-top: 3rem;">You have completed {{ task.title }} task, well done!</h1>
+
+
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 text-success">
+            {% with check_icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/><path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/></svg>' %}
+
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_1|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_2|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_3|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_4|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_5|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_6|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_7|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_8|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_9|truncatechars:100 }}</h4>
+            <h4 class="ps-2">{{ check_icon }} {{ task.subtask_text_10|truncatechars:100 }}</h4>
+
+            {% endwith %}
+        </div>
+        <div class="col-md-4 text-center">
+            <p class="fst-italic fw-bold">
+                -- "Ever stop to chat with a tree? You might be surprised at what they have to say!
+                Did you know trees aren't just tall and leafy, but also savvy communicators? Through a complex
+                underground network, they share gossip and goodies with their neighbors. And talk about longevity! Some
+                trees, like the <a href="https://en.wikipedia.org/wiki/Methuselah_(pine_tree)" target="_blank">Methuselah Tree</a>,
+                have been around for over 4,800 years—older than your
+                great-great-great-great-grandma's grandma! On the other hand, the shortest tree, the
+                <a href="https://en.wikipedia.org/wiki/Salix_herbacea" target="_blank">Dwarf Willow</a>,
+                barely reaches ankle height! And let's not forget the tallest tree on Earth,
+                <a href="https://en.wikipedia.org/wiki/Hyperion_(tree)" target="_blank">Hyperion</a>, soaring over 115
+                meters into the sky! Plus, they're nature's pharmacists, with bark that's a DIY aspirin factory. So next
+                time you stroll through the woods, remember to tip your hat to these wise, old tree whisperers!" --
+            </p>
+        </div>
+    </div>
+</div>
+{% if task.author.profile %}
+<div class="card mb-3 mx-3">
+    <div class="row g-0">
+        <div class="col-md-2">
+            {% if task.author.profile.profile_pic %}
+            <img src="{{ task.author.profile.profile_pic.url }}" class="card-img">
+            {% else %}
+            <img src="{% static 'task/images/default_profile_image.png' %}" class="card-img">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.author.first_name }} {{ task.author.last_name }}</h5>
+                <p class="small text-muted">
+                    <a href="{% url 'user_profile' task.author.profile.id %}">Profile Page </a>
+                    {% if task.author.profile.website_url %}
+                    | <a href="{{ task.author.profile.website_url }}" target="_blank">Website</a>
+                    {% endif %}
+                    {% if task.author.profile.linkedin_url %}
+                    | <a href="{{ task.author.profile.linkedin_url }}" target="blank">Linkedin</a>
+                    {% endif %}
+                    {% if task.author.profile.social_url %}
+                    | <a href="{{ task.author.profile.social_url }}" target="blank">Social</a>
+                    {% endif %}
+                </p>
+                <p class="card-text">{{ task.author.profile.bio|truncatechars:500 }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <a href="{% url 'add_task' %}" class="btn btn-outline-success btn-lg my-1">Start New Task</a>
+            <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-secondary btn-lg my-1">Back To Details</a>
+            <a href="{% url 'delete_task' task.pk %}" class="btn btn-outline-danger btn-lg my-1">Delete This Task</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="https://github.com/pauldzvonyk/organizer.git" class="btn btn-outline-primary my-2" target="_blank">Feel free to contribute on GitHub</a>
+        </div>
+    </div>
+</div>
+
 
 <!--https://picsum.photos/200/100-->
 {% endblock %}

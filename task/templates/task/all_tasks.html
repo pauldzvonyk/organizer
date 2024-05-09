@@ -3,10 +3,18 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="container-fluid">
-    <h2 class="text-center">All your Tasks are displayed in chronological order, newest on top, if you can't find the
-        Task that you're looking for, just use the search window above!</h2>
-</div>
+    {% if user.task_set.exists %}
+        <div class="container-fluid">
+            <h2 class="text-center">All your Tasks are displayed in chronological order, newest on top. If you can't find the Task that you're looking for, just use the search window above!</h2>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <h2 class="text-center">You have no active tasks {{ user.first_name }}. Hit the "Start New Task" button and let's roll!</h2>
+        </div>
+    {% endif %}
+
+
+
 <div class="d-grid gap-2">
     <a href="{% url 'add_task' %}" class="mb-2 btn btn-outline-success btn-sm">Start New Task</a>
 </div>
@@ -18,41 +26,56 @@
         <div class="card mb-2">
             <div class="row">
                 <div class="card-body col-md-9">
-                    <p><a class="fs-3 fw-bold text-success" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
-                        &nbsp;&nbsp;({{ task.date_created }})</p>
+                    {% if task.progress >= 10 %}
+                    <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-completed' task.pk %}">{{ task.title.capitalize }}</a>
+                        &nbsp;&nbsp;- COMPLETED!</p>
+                    {% else %}
+                    <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+                        &nbsp;&nbsp;Progress: {{ task.progress }} out of 10</p>
+                    {% endif %}
 
-                    <p class="card-text">See all tasks in this category: - <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a></p>
-                    <p class="card-text">{{ task.snippet|truncatechars:100 }}</p>
+                    <p class="card-text fst-italic">{{ task.snippet|truncatechars:100 }}</p>
+                    <p>Created: ({{ task.date_created }}). See all tasks in <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> category.</p>
                     <div>
-                        <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_task' task.pk %}">Delete</a>
-                        <a class="btn btn-outline-success btn-sm" href="{% url 'edit_task' task.pk %}">Edit</a>
-                        <a class="btn btn-outline-primary btn-sm" href="{% url 'task-detail' task.pk %}">Open</a>
+                        {% if task.progress >= 10 %}
+                            <a class="btn btn-outline-primary" href="{% url 'task-completed' task.pk %}">Open</a>
+                        {% else %}
+                            <a class="btn btn-outline-primary" href="{% url 'task-detail' task.pk %}">Open</a>
+                        {% endif %}
+                        <a class="btn btn-outline-success" href="{% url 'edit_task' task.pk %}">Edit</a>
+                        <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete</a>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <!-- Set current_image_url for each task individually -->
-                    {% if task.progress == 1 %}
-                    <img src="{% static 'task/images/tree01.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 2 %}
-                    <img src="{% static 'task/images/tree02.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 3 %}
-                    <img src="{% static 'task/images/tree03.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 4 %}
-                    <img src="{% static 'task/images/tree04.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 5 %}
-                    <img src="{% static 'task/images/tree05.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 6 %}
-                    <img src="{% static 'task/images/tree06.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 7 %}
-                    <img src="{% static 'task/images/tree07.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 8 %}
-                    <img src="{% static 'task/images/tree08.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 9 %}
-                    <img src="{% static 'task/images/tree09.PNG' %}" class="card-img-top" alt="Task Progress Image">
-                    {% elif task.progress == 10 %}
-                    <img src="{% static 'task/images/tree10.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                    {% if task.progress <= 9 %}
+                    <a href="{% url 'task-detail' task.pk %}">
+                        <!-- Set current_image_url for each task individually -->
+                        {% if task.progress == 1 %}
+                        <img src="{% static 'task/images/tree01.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 2 %}
+                        <img src="{% static 'task/images/tree02.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 3 %}
+                        <img src="{% static 'task/images/tree03.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 4 %}
+                        <img src="{% static 'task/images/tree04.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 5 %}
+                        <img src="{% static 'task/images/tree05.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 6 %}
+                        <img src="{% static 'task/images/tree06.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 7 %}
+                        <img src="{% static 'task/images/tree07.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 8 %}
+                        <img src="{% static 'task/images/tree08.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% elif task.progress == 9 %}
+                        <img src="{% static 'task/images/tree09.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                        {% else %}
+                        <img src="{% static 'task/images/seed.png' %}" class="card-img-top" alt="Task Progress Image">
+                        {% endif %}
+                    </a>
                     {% else %}
-                    <img src="{% static 'task/images/seed.png' %}" class="card-img-top" alt="Task Progress Image">
+                    <a href="{% url 'task-completed' task.pk %}">
+                        <img src="{% static 'task/images/tree10.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                    </a>
                     {% endif %}
                 </div>
             </div>

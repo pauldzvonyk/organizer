@@ -11,7 +11,6 @@ class Task(models.Model):
     image_header = models.ImageField(null=True, blank=True, upload_to='image_header/')
     task_images = models.ImageField(null=True, blank=True, upload_to='task_images/')
     short_description = RichTextField(blank=True, null=True)
-    # short_description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     progress = models.IntegerField(default=0)
     category = models.CharField(max_length=200, default='uncategorized')
@@ -26,7 +25,6 @@ class Task(models.Model):
     subtask_text_8 = models.CharField(max_length=200, blank=True, null=True)
     subtask_text_9 = models.CharField(max_length=200, blank=True, null=True)
     subtask_text_10 = models.CharField(max_length=200, blank=True, null=True)
-    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} (Published by: '{self.author}' on {self.date_created})"

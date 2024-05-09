@@ -85,7 +85,7 @@ class ProgressMixin:
                     'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
                                     'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
                     },
-                10: {'text': "",
+                10: {'text': "You have successfully accomplished your Task, I am really proud of you, but you shouldn't waste time, set your new Task and move to your new objective!",
                      'image_url': 'task/images/tree10.PNG',
                      'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
                                      'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
@@ -188,6 +188,9 @@ def increment_progress(request, pk):
     # Save the updated task object
     task.save()
 
+    if task.progress >= 10:
+        return redirect('task-completed', pk=pk)
+
     return redirect('task-detail', pk=pk)
 
 
@@ -260,6 +263,6 @@ class DeleteTaskView(CategoryMixin, DeleteView):
     success_url = reverse_lazy('all-tasks')
 
 
-class TaskCompletedView(CategoryMixin, TemplateView):
+class TaskCompletedView(CategoryMixin, DetailView):
     model = Task
     template_name = 'task/task_completed.html'
