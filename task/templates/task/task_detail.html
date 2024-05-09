@@ -14,7 +14,7 @@
                 <br>
                 Created on {{ task.date_created }}
                 <br>
-            <h4 class="text-center text-primary">Follow guidelines to help you decide what your next step should be:</h4>
+            <h5 class="text-center text-muted">Follow guidelines to help you decide what your next step should be:</h5>
             <h4 class="text-center text-danger text-decoration-underline">"{{ current_progress_data.text }}"</h4>
         </div>
         <div class="col-md-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,8 +42,10 @@
             {% endif %}
         </div>
     </div>
-    Each task is divided in 10 steps, to complete the main Task and grow the tree, you need to enter a short
-    description for each step, once the subtask is complete, click 'Done' button, and proceed to the next step.
+    <h6 class="text-muted text-center">
+        Each task is divided in 10 steps, to complete the main Task and grow the tree, you need to enter a short
+        description for each step, once the subtask is complete, click 'Done' button, and proceed to the next step.
+    </h6>
     <hr>
     <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
@@ -69,7 +71,7 @@
                        {% else %} value="{{ task.subtask_text_2 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 1 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -87,7 +89,7 @@
                        {% else %} value="{{ task.subtask_text_3 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 2 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -105,7 +107,7 @@
                        {% else %} value="{{ task.subtask_text_4 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 3 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -124,7 +126,7 @@
                        {% else %} value="{{ task.subtask_text_5 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 4 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -144,7 +146,7 @@
                        {% else %} value="{{ task.subtask_text_6 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 5 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -165,7 +167,7 @@
                        {% else %} value="{{ task.subtask_text_7 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 6 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -187,7 +189,7 @@
                        {% else %} value="{{ task.subtask_text_8 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 7 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -210,7 +212,7 @@
                        {% else %} value="{{ task.subtask_text_9 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 8 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
@@ -234,7 +236,7 @@
                        {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %}>
                 <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
-                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm" onclick="successPage">Submit</button>
+                    <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm" onclick="successPage">Done!</button>
                 </div>
             </div>
         </div>
@@ -310,12 +312,19 @@
     {% endif %}
 
     <br><br><br>
-    <a href="{% url 'all-tasks' %}" class="btn btn-outline-secondary">Back</a>
-    <a href="{% url 'edit_task' task.pk %}" class="btn btn-outline-success">Edit</a>
-    <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete</a>
-    <br><br>
-    <hr>
-    <br>
+
+    <div class="container-fluid my-2">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <a href="{% url 'add_task' %}" class="btn btn-outline-success btn-lg my-1">Start New Task</a>
+                <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-secondary btn-lg my-1">Back To Details</a>
+                <a href="{% url 'delete_task' task.pk %}" class="btn btn-outline-danger btn-lg my-1">Delete This Task</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://github.com/pauldzvonyk/organizer.git" class="btn btn-outline-primary my-2" target="_blank">Feel free to contribute on GitHub</a>
+            </div>
+        </div>
+    </div>
 
     {% else %}
     <h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>
