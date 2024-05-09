@@ -3,7 +3,7 @@ from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from .forms import SignUpForm, EditProfileForm, ChangePasswordForm, CreateProfileForm
+from .forms import SignUpForm, EditSettingsForm, ChangePasswordForm, CreateProfileForm
 from task.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from task.views import CategoryMixin
@@ -54,9 +54,9 @@ class UserRegistrationView(generic.CreateView):
     success_url = reverse_lazy('login')
 
 
-class ProfileUpdateView(CategoryMixin, generic.UpdateView):
-    form_class = EditProfileForm
-    template_name = 'registration/edit_profile.html'
+class SettingsUpdateView(CategoryMixin, generic.UpdateView):
+    form_class = EditSettingsForm
+    template_name = 'registration/edit_settings.html'
     success_url = reverse_lazy('home')
 
     def get_object(self):

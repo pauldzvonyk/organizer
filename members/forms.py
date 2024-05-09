@@ -32,7 +32,7 @@ class SignUpForm(UserCreationForm):
    but only bootstrap existing ones, defining the order of appearance in Meta class"""
 
 
-class EditProfileForm(UserChangeForm):
+class EditSettingsForm(UserChangeForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
