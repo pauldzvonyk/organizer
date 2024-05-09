@@ -3,8 +3,8 @@
 {% block title %} Task{{ task.pk }} {% endblock %}
 {% block content %}
 
-<div class="container-fluid border mt-2">
-    <div class="row border">
+<div class="container-fluid mt-2">
+    <div class="row">
         <div class="col-md-9">
             {% if user.is_authenticated %}
             {% if user.id == task.author.id %}
@@ -17,14 +17,14 @@
             <h5 class="text-center text-muted">Follow guidelines to help you decide what your next step should be:</h5>
             <h4 class="text-center text-danger text-decoration-underline">"{{ current_progress_data.text }}"</h4>
         </div>
-        <div class="col-md-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="col-md-3" data-bs-toggle="modal" data-bs-target="#taskImgModal">
             <img src="{% static current_progress_data.image_url %}" alt="Progress Image" class="img-fluid">
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="taskImgModal" tabindex="-1" aria-labelledby="taskImgModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ task.title }}</h5>
+                        <h5 class="modal-title" id="taskImgModalLabel">{{ task.title.capitalize }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -46,14 +46,13 @@
         Each task is divided in 10 steps, to complete the main Task and grow the tree, you need to enter a short
         description for each step, once the subtask is complete, click 'Done' button, and proceed to the next step.
     </h6>
-    <hr>
     <form method="post" action="{% url 'increment-progress' task.pk %}">
         {% csrf_token %}
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_1" aria-label="Text input with radio button"
                        {% if not task.subtask_text_1 %} placeholder="Define your goal clearly. Whether it's writing a novel, learning a new skill, or completing a project, clarity is key."
-                       {% else %} value="{{ task.subtask_text_1 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_1 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 0 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -68,14 +67,13 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_2" aria-label="Text input with radio button"
                        {% if not task.subtask_text_2 %} placeholder="Break down your goal into smaller, manageable tasks. This makes it less overwhelming and more achievable."
-                       {% else %} value="{{ task.subtask_text_2 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_2 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 1 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
         </div>
-
         <!-- Include hidden input field for subtask_text_1 -->
         <input type="hidden" name="subtask_text_1" value="{{ task.subtask_text_1 }}">
     </form>
@@ -86,7 +84,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_3" aria-label="Text input with radio button"
                        {% if not task.subtask_text_3 %} placeholder="Create a timeline or schedule for completing each task. Setting deadlines helps keep you accountable and on track."
-                       {% else %} value="{{ task.subtask_text_3 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_3 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 2 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -104,7 +102,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_4" aria-label="Text input with radio button"
                        {% if not task.subtask_text_4 %} placeholder="Gather any necessary resources or materials needed to accomplish your goal. This might include books, software, or other tools."
-                       {% else %} value="{{ task.subtask_text_4 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_4 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 3 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -123,7 +121,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_5" aria-label="Text input with radio button"
                        {% if not task.subtask_text_5 %} placeholder="Start with the first task on your list. Take that initial step forward, no matter how small it may seem."
-                       {% else %} value="{{ task.subtask_text_5 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_5 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 4 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -143,7 +141,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_6" aria-label="Text input with radio button"
                        {% if not task.subtask_text_6 %} placeholder="Stay organized throughout the process. Keep track of your progress and adjust your plan as needed."
-                       {% else %} value="{{ task.subtask_text_6 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_6 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 5 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -164,7 +162,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_7" aria-label="Text input with radio button"
                        {% if not task.subtask_text_7 %} placeholder="Don't be afraid to ask for help if you get stuck. Seek guidance from friends, colleagues, or online communities."
-                       {% else %} value="{{ task.subtask_text_7 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_7 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 6 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -186,7 +184,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_8" aria-label="Text input with radio button"
                        {% if not task.subtask_text_8 %} placeholder="Stay focused and motivated. Remind yourself why you're pursuing this goal and celebrate your achievements along the way."
-                       {% else %} value="{{ task.subtask_text_8 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_8 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 7 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -209,7 +207,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_9" aria-label="Text input with radio button"
                        {% if not task.subtask_text_9 %} placeholder="Keep pushing forward, even when faced with challenges or setbacks. Perseverance is key to reaching your goal."
-                       {% else %} value="{{ task.subtask_text_9 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_9 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 8 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
@@ -233,7 +231,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_10" aria-label="Text input with radio button"
                        {% if not task.subtask_text_10 %} placeholder="You're almost there, just one more push! Keep going until you've successfully completed your task or achieved your goal. You can do it!"
-                       {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %}>
+                       {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm" onclick="successPage">Done!</button>
@@ -295,7 +293,7 @@
         </div>
     </div>
     {% endif %}
-    <hr>
+
     <h3>Comments...</h3> <br>
     {% if not task.comments.all %}
     There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
@@ -316,8 +314,8 @@
     <div class="container-fluid my-2">
         <div class="row">
             <div class="col-md-8 text-center">
-                <a href="{% url 'add_task' %}" class="btn btn-outline-success btn-lg my-1">Start New Task</a>
-                <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-secondary btn-lg my-1">Back To Details</a>
+                <a href="{% url 'all-tasks' %}" class="btn btn-outline-success btn-lg my-1">Back To All Tasks</a>
+                <a href="{% url 'edit_task' task.pk %}" class="btn btn-outline-secondary btn-lg my-1">Modify Task</a>
                 <a href="{% url 'delete_task' task.pk %}" class="btn btn-outline-danger btn-lg my-1">Delete This Task</a>
             </div>
             <div class="col-md-4 text-center">
@@ -331,6 +329,17 @@
     {% endif %}
     {% endif %}
 </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+        });
+    });
+</script>
 
 
 {% endblock %}

@@ -85,7 +85,7 @@ class ProgressMixin:
                     'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
                                     'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
                     },
-                10: {'text': "",
+                10: {'text': "You have successfully accomplished your Task, I am really proud of you, but you shouldn't waste time, set your new Task and move to your new objective!",
                      'image_url': 'task/images/tree10.PNG',
                      'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
                                      'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
