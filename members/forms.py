@@ -71,3 +71,21 @@ class CreateProfileForm(forms.ModelForm):
             'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
             'social_url': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class EditProfileForm(UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop('password')
+
+    class Meta:
+        model = Profile
+        fields = ('bio', 'profile_pic', 'website_url', 'linkedin_url', 'social_url')
+
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'social_url': forms.TextInput(attrs={'class': 'form-control'}),
+
+        }

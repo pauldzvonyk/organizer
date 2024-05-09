@@ -3,7 +3,7 @@ from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from .forms import SignUpForm, EditSettingsForm, ChangePasswordForm, CreateProfileForm
+from .forms import SignUpForm, EditSettingsForm, ChangePasswordForm, CreateProfileForm, EditProfileForm
 from task.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from task.views import CategoryMixin
@@ -24,8 +24,10 @@ class CreateProfilePageView(CategoryMixin, CreateView):
 
 class EditProfilePageView(CategoryMixin, LoginRequiredMixin, generic.UpdateView):
     model = Profile
+    form_class = EditProfileForm
     template_name = 'registration/edit_profile_page.html'
-    fields = '__all__'
+
+    # fields = '__all__'
 
     def get_object(self, queryset=None):
         # Use the authenticated user's profile for editing
