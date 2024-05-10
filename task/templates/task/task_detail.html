@@ -297,11 +297,11 @@
     {% endif %}
     <hr>
 
-    <h5 class="text-muted">This section is for your personal notes and comments.</h5>
+    <h5>This section is for your personal notes and comments.</h5>
     {% if not task.comments.all %}
     There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
     {% else %}
-    <a href="{% url 'add_comment' task.pk %}" class="btn btn-sm btn-outline-secondary mb-2">Add another comment</a><br>
+    <a href="{% url 'add_comment' task.pk %}" class="btn btn-sm btn-outline-primary mb-2">Add another comment</a><br>
     {% for comment in task.comments.all %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
     <br>
@@ -314,18 +314,18 @@
 
     <br>
 
-    <div class="container-fluid my-2">
-        <div class="row">
-            <div class="col-md-8">
-                <a href="{% url 'all-tasks' %}" class="btn btn-outline-success my-1">Back To All Tasks</a>
-                <a href="{% url 'edit_task' task.pk %}" class="btn btn-outline-secondary my-1">Modify Task</a>
-                <a href="{% url 'delete_task' task.pk %}" class="btn btn-outline-danger my-1">Delete This Task</a>
-            </div>
-            <div class="col-md-4 text-center">
-                <a href="https://github.com/pauldzvonyk/organizer.git" class="btn btn-outline-primary my-2" target="_blank">Feel free to contribute on GitHub</a>
-            </div>
+
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <a href="{% url 'edit_task' task.pk %}" class="btn btn-outline-success my-1">Edit Your Task</a>
+            <a href="{% url 'all-tasks' %}" class="btn btn-outline-primary my-1">Back To All Tasks</a>
+            <a href="{% url 'delete_task' task.pk %}" class="btn btn-outline-danger my-1">Delete This Task</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="https://github.com/pauldzvonyk/organizer.git" class="btn btn-outline-secondary my-2" target="_blank">Feel free to contribute on GitHub</a>
         </div>
     </div>
+
 
     {% else %}
     <h2>You're trying to access a restricted territory... someone else's tasks!!!</h2>
