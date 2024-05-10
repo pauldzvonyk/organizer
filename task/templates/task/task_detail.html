@@ -274,7 +274,7 @@
             </div>
             <div class="col-md-10">
                 <div class="card-body">
-                    <h5 class="card-title">{{ task.author.first_name }} {{ task.author.last_name }}</h5>
+                    <h5 class="card-title">{{ task.author.first_name.capitalize }} {{ task.author.last_name.capitalize }}</h5>
                     <p class="small text-muted">
                         <a href="{% url 'user_profile' task.author.profile.id %}">Profile Page </a>
                         {% if task.author.profile.website_url %}
@@ -304,6 +304,7 @@
     <a href="{% url 'add_comment' task.pk %}" class="btn btn-sm btn-outline-primary mb-2">Add another comment</a><br>
     {% for comment in task.comments.all %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
+    <a href="{% url 'delete-comment' comment.pk %}">Delete comment</a>
     <br>
     {{ comment.body|safe }}
 

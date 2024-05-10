@@ -228,6 +228,17 @@ class AddCommentView(CategoryMixin, CreateView):
         return context
 
 
+class DeleteCommentView(CategoryMixin, DeleteView):
+    model = Comment
+    template_name = 'task/delete_comment.html'
+    success_url = reverse_lazy('all-tasks')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = self.object.task
+        return context
+
+
 class CategoryView(CategoryMixin, ListView):
     template_name = 'task/categories.html'
     context_object_name = 'category_tasks'
