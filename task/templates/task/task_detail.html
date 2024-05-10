@@ -305,7 +305,7 @@
     <h6><a href="{% url 'add_comment' task.pk %}">Add another comment</a></h6><br>
     {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
-    <a href="{% url 'delete-comment' comment.pk %}">delete</a> | <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a>
+    <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a> | <a href="{% url 'delete-comment' comment.pk %}">delete</a>
 
     <br>
     {{ comment.body|safe }}

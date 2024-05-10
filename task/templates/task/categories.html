@@ -1,4 +1,5 @@
 {% extends 'task/base.html' %}
+{% load static %}
 {% block content %}
 
 {% if category_tasks %}
@@ -6,27 +7,69 @@
 <h1>{{ cats }} Category html Page</h1>
 
 
-<ul>
-    {% for task in category_tasks %}
-        {% if user.id == task.author.id %}
+{% for task in category_tasks %}
+{% if user.id == task.author.id %}
 
-    <li>
-        <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a><br>
-        (Published by: "{{ task.author.first_name }} {{ task.author.last_name }}")
-        <br>
-        {{ task.short_description|slice:":150"}}
-        <br>
-        {{ task.date_created }}
-        {% if user.is_authenticated %}
-        <a href="{% url 'edit_task' task.pk %}">Edit</a>
-        <a href="{% url 'delete_task' task.pk %}">Delete</a>
-        {% endif %}
+<div class="card mb-2">
+    <div class="row">
+        <div class="card-body col-md-9">
+            {% if task.progress >= 10 %}
+            <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-completed' task.pk %}">{{ task.title.capitalize }}</a>
+                &nbsp;&nbsp;- COMPLETED!</p>
+            {% else %}
+            <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+                &nbsp;&nbsp;Progress: {{ task.progress }} out of 10</p>
+            {% endif %}
 
-        <hr>
-    </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+            <p class="card-text fst-italic">{{ task.snippet|truncatechars:100 }}</p>
+            <p>Created: ({{ task.date_created }}). See all tasks in <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> category.</p>
+            <div>
+                {% if task.progress >= 10 %}
+                <a class="btn btn-outline-primary" href="{% url 'task-completed' task.pk %}">Open</a>
+                {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'task-detail' task.pk %}">Open</a>
+                {% endif %}
+                <a class="btn btn-outline-success" href="{% url 'edit_task' task.pk %}">Edit</a>
+                <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            {% if task.progress <= 9 %}
+            <a href="{% url 'task-detail' task.pk %}">
+                <!-- Set current_image_url for each task individually -->
+                {% if task.progress == 1 %}
+                <img src="{% static 'task/images/tree01.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 2 %}
+                <img src="{% static 'task/images/tree02.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 3 %}
+                <img src="{% static 'task/images/tree03.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 4 %}
+                <img src="{% static 'task/images/tree04.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 5 %}
+                <img src="{% static 'task/images/tree05.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 6 %}
+                <img src="{% static 'task/images/tree06.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 7 %}
+                <img src="{% static 'task/images/tree07.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 8 %}
+                <img src="{% static 'task/images/tree08.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% elif task.progress == 9 %}
+                <img src="{% static 'task/images/tree09.PNG' %}" class="card-img-top" alt="Task Progress Image">
+                {% else %}
+                <img src="{% static 'task/images/seed.png' %}" class="card-img-top" alt="Task Progress Image">
+                {% endif %}
+            </a>
+            {% else %}
+            <a href="{% url 'task-completed' task.pk %}">
+                <img src="{% static 'task/images/tree10.PNG' %}" class="card-img-top" alt="Task Progress Image">
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
 {% else %}
 <h2>There's no active tasks in this category...</h2>
 {% endif %}

@@ -258,7 +258,8 @@ class DeleteCommentView(CategoryMixin, DeleteView):
         return context
 
 
-class CategoryView(CategoryMixin, ListView):
+class CategoryView(ProgressMixin, CategoryMixin, ListView):
+    model = Task
     template_name = 'task/categories.html'
     context_object_name = 'category_tasks'
 
