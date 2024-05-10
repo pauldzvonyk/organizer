@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Task, Comment
-from .forms import TaskForm, EditForm, AddComment
+from .forms import TaskForm, EditForm, AddComment, EditCommentForm
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
@@ -226,6 +226,16 @@ class AddCommentView(CategoryMixin, CreateView):
         task = Task.objects.get(pk=self.kwargs['pk'])
         context['task'] = task
         return context
+
+
+class EditCommentView(CategoryMixin, UpdateView):
+    model = Comment
+    form_class = EditCommentForm
+    template_name = 'task/edit_comment.html'
+
+    def get_success_url(self):
+        return reverse_lazy('task-detail', kwargs={'pk': self.kwargs['task_pk']})
+
 
 
 class DeleteCommentView(CategoryMixin, DeleteView):

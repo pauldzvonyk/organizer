@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (AllTasksView, TaskDetailView, AddTaskView, EditTaskView, DeleteTaskView, CategoryView,
                     AddCommentView, LandingPageView, SearchTaskView, increment_progress, TaskCompletedView,
-                    DeleteCommentView)
+                    DeleteCommentView, EditCommentView)
 
 urlpatterns = [
     path('', LandingPageView.as_view(), name='home'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('task/delete/<int:pk>', DeleteTaskView.as_view(), name='delete_task'),
     path('category/<str:cats>/', CategoryView.as_view(), name='category'),
     path('task/<int:pk>/comment', AddCommentView.as_view(), name='add_comment'),
+    path('task/<int:task_pk>/comment/<int:pk>', EditCommentView.as_view(), name='edit-comment'),
     path('task/<int:pk>/comment/delete_comment/', DeleteCommentView.as_view(), name='delete-comment'),
     path('task/task_completed/<int:pk>', TaskCompletedView.as_view(), name='task-completed'),
 ]

@@ -303,7 +303,8 @@
     <h5> Add another note <a href="{% url 'add_comment' task.pk %}">here</a></h5><br>
     {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
-    <a href="{% url 'delete-comment' comment.pk %}">Delete comment</a>
+    <a href="{% url 'delete-comment' comment.pk %}">delete</a> | <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a>
+
     <br>
     {{ comment.body|safe }}
 
