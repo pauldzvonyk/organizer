@@ -45,9 +45,17 @@ class ProfilePageView(CategoryMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfilePageView, self).get_context_data(**kwargs)
 
-        current_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        # Get the current user object
+        current_user = self.request.user
+
+        # Query the Profile associated with the current user's pk
+        profile = get_object_or_404(Profile, user=current_user)
+
+        # Pass the profile to the template context
         context['current_user'] = current_user
+        context['profile'] = profile
         return context
+
 
 
 class UserRegistrationView(generic.CreateView):
@@ -59,7 +67,7 @@ class UserRegistrationView(generic.CreateView):
 class SettingsUpdateView(CategoryMixin, generic.UpdateView):
     form_class = EditSettingsForm
     template_name = 'registration/edit_settings.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('all-tasks')
 
     def get_object(self):
         return self.request.user

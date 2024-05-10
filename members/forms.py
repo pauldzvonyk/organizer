@@ -38,13 +38,12 @@ class EditSettingsForm(UserChangeForm):
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_login = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
     username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    is_active = forms.CharField(max_length=200, widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
     date_joined = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password', 'last_login',
-                  'date_joined', 'is_active')
+                  'date_joined')
 
 
 class ChangePasswordForm(PasswordChangeForm):
@@ -87,5 +86,4 @@ class EditProfileForm(UserChangeForm):
             'website_url': forms.TextInput(attrs={'class': 'form-control'}),
             'linkedin_url': forms.TextInput(attrs={'class': 'form-control'}),
             'social_url': forms.TextInput(attrs={'class': 'form-control'}),
-
         }

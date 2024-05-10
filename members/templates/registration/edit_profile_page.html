@@ -5,21 +5,23 @@
 
 {% if user.is_authenticated %}
 
-<h1>Edit Profile...!!!!!</h1>
+<div class="container-fluid">
+    <h1>Edit Profile...!!!!!</h1>
 
-<div class="form-group mb-4">
-    <form method="POST" class="submit_form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-outline-success">Confirm Changes</button>
-        <a href="{% url 'user_profile' user.pk %}" class="btn btn-outline-primary">Back To Profile</a>
-    </form>
+    <div class="form-group mb-4">
+        <form method="POST" class="submit_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-success">Confirm Changes</button>
+            <a href="{% url 'user_profile' user.pk %}" class="btn btn-outline-primary">Back To Profile</a>
+        </form>
+    </div>
+
+    {% else %}
+
+    You're not allowed here, and you know it!...
+
 </div>
-
-{% else %}
-
-You're not allowed here, and you know it!...
-
 {% endif %}
 
 {% endblock %}
