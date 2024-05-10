@@ -236,16 +236,25 @@ class EditCommentView(CategoryMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('task-detail', kwargs={'pk': self.kwargs['task_pk']})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        task = Task.objects.get(pk=self.kwargs['task_pk'])
+        context['task'] = task
+        context['user'] = self.request.user
+        return context
 
 
 class DeleteCommentView(CategoryMixin, DeleteView):
     model = Comment
     template_name = 'task/delete_comment.html'
-    success_url = reverse_lazy('all-tasks')
+
+    def get_success_url(self):
+        return reverse_lazy('task-detail', kwargs={'pk': self.object.task_id})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['task'] = self.object.task
+        task = get_object_or_404(Task, pk=self.object.task_id)
+        context['task'] = task
         return context
 
 

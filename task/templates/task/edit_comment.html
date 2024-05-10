@@ -13,8 +13,8 @@
     <form method="POST" class="submit_form">
         {% csrf_token %}
         {{ form.as_p }}
+        <button class="btn btn-outline-success">Save Changes</button>
         <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-primary">Back</a>
-        <button class="btn btn-outline-danger">Delete</button>
     </form>
 </div>
 {% else %}
