@@ -29,7 +29,7 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ('title', 'author', 'snippet', 'category', 'new_category', 'image_header',
-                  'short_description', 'task_images', 'progress')
+                  'short_description', 'task_images')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -39,7 +39,6 @@ class TaskForm(forms.ModelForm):
             'new_category': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter new category'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
-            'progress': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
