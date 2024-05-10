@@ -297,12 +297,11 @@
     {% endif %}
     <hr>
 
-    <h5>This section is for your personal notes and comments.</h5>
     {% if not task.comments.all %}
-    There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a>
+    <h5>This section is for your personal notes and comments. There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a></h5>
     {% else %}
-    <a href="{% url 'add_comment' task.pk %}" class="btn btn-sm btn-outline-primary mb-2">Add another comment</a><br>
-    {% for comment in task.comments.all %}
+    <h5> Add another note <a href="{% url 'add_comment' task.pk %}">here</a></h5><br>
+    {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
     <a href="{% url 'delete-comment' comment.pk %}">Delete comment</a>
     <br>
