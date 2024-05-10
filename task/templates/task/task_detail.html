@@ -298,9 +298,11 @@
     <hr>
 
     {% if not task.comments.all %}
-    <h5>This section is for your personal notes and comments. There are no comments yet, but you can add one <a href="{% url 'add_comment' task.pk %}">here</a></h5>
+    <h5>This section is for your personal notes and comments.</h5>
+    <h6><a href="{% url 'add_comment' task.pk %}">Add your first comment</a></h6>
+    <hr>
     {% else %}
-    <h5> Add another note <a href="{% url 'add_comment' task.pk %}">here</a></h5><br>
+    <h6><a href="{% url 'add_comment' task.pk %}">Add another comment</a></h6><br>
     {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
     <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
     <a href="{% url 'delete-comment' comment.pk %}">delete</a> | <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a>

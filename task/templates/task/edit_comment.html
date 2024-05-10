@@ -7,12 +7,13 @@
 {% if user.id == task.author.id %}
 
 
-<h1>Are you sure that you want to EDIT: {{ comment.name }}?</h1>
+<h1>Edit your {{ comment.name }} comment.</h1>
 
 <div class="form-group">
-    <form method="POST" class="submit_form">
+    <form method="POST" class="submit_form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ form.media }}
         <button class="btn btn-outline-success">Save Changes</button>
         <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-primary">Back</a>
     </form>
