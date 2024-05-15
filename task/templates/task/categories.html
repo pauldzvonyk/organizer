@@ -17,7 +17,7 @@
             <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-completed' task.pk %}">{{ task.title.capitalize }}</a>
                 &nbsp;&nbsp;- COMPLETED!</p>
             {% else %}
-            <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+            <p class="fw-bold text-danger"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                 &nbsp;&nbsp;Progress: {{ task.progress }} out of 10</p>
             {% endif %}
 

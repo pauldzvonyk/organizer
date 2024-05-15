@@ -5,9 +5,8 @@
 
 {% if searched %}
 {% if all_searched %}
-<h1 class="text-center">The search has produced the following results... "{{ searched }}"</h1>
+<h1 class="text-center">The search for "{{ searched }}" produced following results:</h1>
 
-<br><hr>
 {% for task in all_searched %}
 {% if user.id == task.author.id %}
 <div class="card mb-2">
@@ -17,7 +16,7 @@
             <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-completed' task.pk %}">{{ task.title.capitalize }}</a>
                 &nbsp;&nbsp;- COMPLETED!</p>
             {% else %}
-            <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+            <p class="fw-bold text-danger"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                 &nbsp;&nbsp;Progress: {{ task.progress }} out of 10</p>
             {% endif %}
 
@@ -67,9 +66,6 @@
         </div>
     </div>
 </div>
-
-
-<br>
 {% endif %}
 {% endfor %}<hr>
 {% else %}

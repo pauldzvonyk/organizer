@@ -30,7 +30,7 @@
                     <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-completed' task.pk %}">{{ task.title.capitalize }}</a>
                         &nbsp;&nbsp;- COMPLETED!</p>
                     {% else %}
-                    <p class="fw-bold text-success"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
+                    <p class="fw-bold text-danger"><a class="fs-3" href="{% url 'task-detail' task.pk %}">{{ task.title.capitalize }}</a>
                         &nbsp;&nbsp;Progress: {{ task.progress }} out of 10</p>
                     {% endif %}
 
@@ -38,9 +38,9 @@
                     <p>Created: ({{ task.date_created }}). See all tasks in <a href="{% url 'category' task.category|slugify %}">{{ task.category }}</a> category.</p>
                     <div>
                         {% if task.progress >= 10 %}
-                            <a class="btn btn-outline-primary" href="{% url 'task-completed' task.pk %}">Open</a>
+                        <a class="btn btn-outline-primary" href="{% url 'task-completed' task.pk %}">Open</a>
                         {% else %}
-                            <a class="btn btn-outline-primary" href="{% url 'task-detail' task.pk %}">Open</a>
+                        <a class="btn btn-outline-primary" href="{% url 'task-detail' task.pk %}">Open</a>
                         {% endif %}
                         <a class="btn btn-outline-success" href="{% url 'edit_task' task.pk %}">Edit</a>
                         <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete</a>
