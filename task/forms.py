@@ -71,7 +71,7 @@ class EditForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ('title', 'snippet', 'category', 'new_category', 'image_header', 'short_description', 'task_images', 'progress')
+        fields = ('title', 'snippet', 'category', 'new_category', 'image_header', 'short_description', 'task_images')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the task title...'}),
@@ -79,7 +79,6 @@ class EditForm(forms.ModelForm):
             'new_category': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter new category'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
             'short_description': forms.Textarea(attrs={'class': 'form-control'}),
-            'progress': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
