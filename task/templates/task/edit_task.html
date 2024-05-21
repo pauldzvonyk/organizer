@@ -14,9 +14,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         {{ form.media }}
-        <a href="{% url 'task-detail' task.pk %}" class="btn btn-secondary">Back</a>
-        <button class="btn btn-secondary">Update Task</button>
-        <a class="btn btn-secondary" href="{% url 'delete_task' task.pk %}">Delete Task</a>
+        <button class="btn btn-outline-success">Save Changes</button>
+        <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-primary">Back To Task</a>
+        <a class="btn btn-outline-danger" href="{% url 'delete_task' task.pk %}">Delete Task</a>
     </form>
 </div>
 {% else %}
