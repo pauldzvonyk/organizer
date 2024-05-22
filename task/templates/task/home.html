@@ -19,27 +19,30 @@
                 color: white;">
     <div class="container-fluid">
         <div class="row">
-            <p class="col-md-4 fs-5" style="background-color: rgba(9, 9, 9, 0.5)"> Don't let the tree wither and die.
+            <p class="col-md-4 fs-5 mb-auto py-3" style="background-color: rgba(9, 9, 9, 0.5)"> Don't let the tree wither and die.
                 <br>
                 Plant your idea like a seed (house-keeping, hobby or work) and watch it grow into a
                 beautiful tree, getting stronger and taller, until your goal is complete.
             </p>
 
         </div>
-        <div class="row">
+        <div class="row text-center">
             <div class="col-md-4 fs-5" style="background-color: rgba(9, 9, 9, 0.5)">
-                <p class="list-group-item fw-bold text-white" style="background-color: rgba(21, 165, 53, 0.8)">Why use "Fundo"?</p>
-                <li class="list-group-item bg-transparent text-white">Stay focused and motivated.</li>
-                <li class="list-group-item bg-transparent text-white">Lots of fun!</li>
-                <li class="list-group-item bg-transparent text-white">Easy to use.</li>
-                <li class="list-group-item bg-transparent text-white">100% free!</li>
+                <div class="row">
+                    <p class="d-flex flex-row align-items-center mb-auto justify-content-center fs-5 fw-bold"
+                       style="min-height: 3rem; background-color: rgba(21, 165, 53, 0.5)">Why Use Task Organizer</p>
+                    <p class="bg-transparent text-white">Stay focused and motivated.</p>
+                    <p class="bg-transparent text-white">Lots of fun!</p>
+                    <p class="bg-transparent text-white">Easy to use.</p>
+                    <p class="bg-transparent text-white">100% free!</p>
+                </div>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-md-4" style="background-color: rgba(9, 9, 9, 0.5)">
-                <div class="row text-center">
+                <div class="row">
                     <p class="d-flex flex-row align-items-center mb-auto justify-content-center fs-5 fw-bold"
-                       style="min-height: 3rem; background-color: rgba(21, 165, 53, 0.8)"> Contacts</p>
+                       style="min-height: 3rem; background-color: rgba(21, 165, 53, 0.5)">Contacts</p>
                     <a href="https://www.linkedin.com/in/paul-dzvonyk" target="_blank" class="btn btn-outline-warning">Linkedin</a>
                     <a href="https://github.com/pauldzvonyk/organizer" target="_blank" class="btn btn-outline-info">GitHub</a>
                     <a href="#" target="_blank" class="btn btn-outline-danger">Email</a>
@@ -60,53 +63,7 @@
 
 </div>
 
-<div class="container fw-bold">
-    <div class="row">
-        <p class="col-md-6 text-center mt-3"><span class="lead fw-bold"> Let's roll and get things done... NOW!</span><br><br>
-            Don't let the tree wither and die.<br>
-            Plant your idea like a seed (house-keeping, hobby or work) and watch it grow into a beautiful tree, getting stronger and taller,
-            until your goal is complete.
-        </p>
-        <div class="col-md-6">
-            <img src="{% static 'task/images/main-tree.png' %}" class="img-fluid">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="container text-center mt-4">
-    <div class="row">
-        <ul class="col-md-6 px-4 list-group">
-            <li class="list-group-item fw-bold bg-primary text-white">Why use "Fundo"?</li>
-            <li class="list-group-item bg-secondary text-white">Stay focused and motivated.</li>
-            <li class="list-group-item bg-secondary text-white">Lots of fun!</li>
-            <li class="list-group-item bg-secondary text-white">Easy to use.</li>
-            <li class="list-group-item bg-secondary text-white">100% free!</li>
-        </ul>
-        <div class="col-md-6">
-            <img src="{% static 'task/images/hobbies.png' %}" class="img-fluid" alt="Hobbies Img">
-        </div>
-    </div>
-</div>
-
-<div class="container text-center mt-3">
-    <p class="lead fw-bold mb-0">What are you waiting for? Sign up and have fun!</p>
-    <p>Like what you see? You can check more apps on the links below, they are all open source
-        and your contribution is very wellcome. Thank you!</p>
-    <div class="row text-center">
-        <a href="#" target="_blank" class="col-md-3 btn btn-outline-success">Website</a>
-        <a href="https://www.linkedin.com/in/paul-dzvonyk" target="_blank" class="col-md-3 btn btn-outline-warning">Linkedin</a>
-        <a href="https://github.com/pauldzvonyk/organizer" target="_blank" class="col-md-3 btn btn-outline-info">GitHub</a>
-        <a href="#" target="_blank" class="col-md-3 btn btn-outline-primary">Email</a>
-    </div>
-    {% if user.is_authenticated %}
-    <a href="{% url 'all-tasks' %}" class="btn btn-outline-success btn-sm mt-3">Go to tasks...</a>
-    {% else %}
-    <a href="{% url 'register' %}" class="btn btn-success mt-3">Start Now</a>
-    {% endif %}
-</div>
 
 {% endblock %}
 
