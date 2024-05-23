@@ -51,7 +51,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_1" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_1 %} placeholder="Define your goal clearly. Whether it's writing a novel, learning a new skill, or completing a project, clarity is key."
+                       {% if not task.subtask_text_1 %} placeholder="Write a comprehensive list of all the tools and materials you will need for the task at hand."
                        {% else %} value="{{ task.subtask_text_1 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 0 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -66,7 +66,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_2" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_2 %} placeholder="Break down your goal into smaller, manageable tasks. This makes it less overwhelming and more achievable."
+                       {% if not task.subtask_text_2 %} placeholder="Gather all your necessary tools and materials in one place, ensuring nothing is missing."
                        {% else %} value="{{ task.subtask_text_2 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 1 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -83,7 +83,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_3" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_3 %} placeholder="Create a timeline or schedule for completing each task. Setting deadlines helps keep you accountable and on track."
+                       {% if not task.subtask_text_3 %} placeholder="Take some time to thoroughly review the instructions or guidelines to understand the task completely."
                        {% else %} value="{{ task.subtask_text_3 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 2 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -101,7 +101,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_4" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_4 %} placeholder="Gather any necessary resources or materials needed to accomplish your goal. This might include books, software, or other tools."
+                       {% if not task.subtask_text_4 %} placeholder="Organize your workspace to be clutter-free and conducive to focusing on the task."
                        {% else %} value="{{ task.subtask_text_4 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 3 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -120,7 +120,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_5" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_5 %} placeholder="Start with the first task on your list. Take that initial step forward, no matter how small it may seem."
+                       {% if not task.subtask_text_5 %} placeholder="Begin the task with a positive attitude, believing in your ability to succeed."
                        {% else %} value="{{ task.subtask_text_5 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 4 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -140,10 +140,9 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_6" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_6 %} placeholder="Stay organized throughout the process. Keep track of your progress and adjust your plan as needed."
+                       {% if not task.subtask_text_6 %} placeholder="Regularly check your progress against your plan to make sure you’re on the right path."
                        {% else %} value="{{ task.subtask_text_6 }}" readonly {% endif %} required>
-                <div class="input-group-text" {% if task.progress == 5 %} style="display: block;" {% else %}
-                     style="display: none" {% endif %}>
+                <div class="input-group-text" {% if task.progress == 5 %} style="display: block;" {% else %} style="display: none" {% endif %}>
                     <button type="submit" name="increment_progress" class="btn btn-outline-success btn-sm">Done!</button>
                 </div>
             </div>
@@ -161,7 +160,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_7" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_7 %} placeholder="Don't be afraid to ask for help if you get stuck. Seek guidance from friends, colleagues, or online communities."
+                       {% if not task.subtask_text_7 %} placeholder="Remember to take short breaks to keep your mind and body refreshed and energized."
                        {% else %} value="{{ task.subtask_text_7 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 6 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -183,7 +182,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_8" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_8 %} placeholder="Stay focused and motivated. Remind yourself why you're pursuing this goal and celebrate your achievements along the way."
+                       {% if not task.subtask_text_8 %} placeholder="Approach any obstacles or difficulties with confidence, knowing you can overcome them."
                        {% else %} value="{{ task.subtask_text_8 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 7 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -206,7 +205,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_9" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_9 %} placeholder="Keep pushing forward, even when faced with challenges or setbacks. Perseverance is key to reaching your goal."
+                       {% if not task.subtask_text_9 %} placeholder="Review your work carefully to ensure all steps have been completed accurately and thoroughly."
                        {% else %} value="{{ task.subtask_text_9 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 8 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -230,7 +229,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_10" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_10 %} placeholder="You're almost there, just one more push! Keep going until you've successfully completed your task or achieved your goal. You can do it!"
+                       {% if not task.subtask_text_10 %} placeholder="Keep pushing forward, you're nearly there—just one last effort and you'll have completed your task!"
                        {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>

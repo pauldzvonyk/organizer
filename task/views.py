@@ -21,12 +21,12 @@ class ProgressMixin:
         if task:
             progress_data = {
                 0: {
-                    'text': "Define your goal clearly. Whether it's writing a novel, learning a new skill, or completing "
-                            "a project, clarity is key.",
+                    'text': "Define your goal clearly. Whether it's writing a novel, learning a new skill, "
+                            "or completing a project, clarity is key.",
                     'image_url': 'task/images/seed.png',
                     'progress_bar': '<div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" '
                                     'aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>',
-                    },
+                },
                 1: {'text': "Break down your goal into smaller, manageable tasks. This makes it less overwhelming and "
                             "more achievable.",
                     'image_url': 'task/images/tree01.PNG',
@@ -84,8 +84,9 @@ class ProgressMixin:
                     'image_url': 'task/images/tree09.PNG',
                     'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 90%" '
                                     'aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>',
-                    },
-                10: {'text': "You have successfully accomplished your Task, I am really proud of you, but you shouldn't waste time, set your new Task and move to your new objective!",
+                },
+                10: {'text': "You have successfully accomplished your Task, I am really proud of you, but you "
+                             "shouldn't waste time, set your new Task and move to your new objective!",
                      'image_url': 'task/images/tree10.PNG',
                      'progress_bar': '<div class="progress-bar bg-success" role="progressbar" style="width: 100%" '
                                      'aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>',
