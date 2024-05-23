@@ -2,20 +2,26 @@
 {% block title %} Edit Profile {% endblock %}
 {% block content %}
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <h1 class="text-center">Edit Settings.</h1>
+                <br><br>
+                <strong>Here you can change your personal data here like your name, surname, email, etc... no one else
+                    will be able to see this information.</strong>
+                <br><br>
 
-<div class="container-fluid">
-    <h1>Edit Settings.</h1>
-    <br><br>
-    <strong>{{ user.profile.bio }}</strong>
-    <br><br>
-
-    <div class="form-group mb-3">
-        <form method="POST" class="submit_form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-outline-success">Save Changes</button>
-            <a href="{% url 'all-tasks' %}" class="btn btn-outline-primary">Back To Tasks</a>
-        </form>
+                <div class="form-group mb-3">
+                    <form method="POST" class="submit_form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-outline-success">Save Changes</button>
+                        <a href="{% url 'all-tasks' %}" class="btn btn-outline-primary">Back To Tasks</a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
