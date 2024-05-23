@@ -2,31 +2,36 @@
 {% block title %} Add Comment {% endblock %}
 {% block content %}
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-{% if user.is_authenticated %}
+            {% if user.is_authenticated %}
 
+            <h1 class="text-center">Add Comment</h1>
 
-<h1>Add Comment</h1>
+            <div class="form-group">
+                <form method="POST" class="submit_form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ form.media }}
+                    <button class="btn btn-outline-success">Save</button>
+                    <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-danger">Cancel</a>
+                </form>
+            </div>
 
-<div class="form-group">
-    <form method="POST" class="submit_form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ form.media }}
-        <button class="btn btn-outline-success">Save</button>
-        <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-danger">Cancel</a>
-    </form>
+            <script>
+                var name = "{{ user.id }}";
+                document.getElementById("js_tweak_id").value = name;
+            </script>
+
+            {% else %}
+
+            You're not allowed here, and you know it!...
+
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-<script>
-    var name = "{{ user.id }}";
-    document.getElementById("js_tweak_id").value = name;
-</script>
-
-{% else %}
-
-You're not allowed here, and you know it!...
-
-{% endif %}
 
 {% endblock %}
