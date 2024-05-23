@@ -3,27 +3,35 @@
 {% block content %}
 
 
-<h1>Login...</h1>
 
-<div class="form-group">
-    <form method="POST" class="submit_form">
-        {% csrf_token %}
-        <br>
-        <label class="form-label">Username</label>
-        <div class="form-group">
-            <input type="text" class="form-control" name="username">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Login...</h1>
+            <div class="form-group">
+                <form method="POST" class="submit_form">
+                    {% csrf_token %}
+                    <br>
+                    <label class="form-label">Username</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username">
+                    </div>
+                    <br>
+                    <label class="form-label">Password</label>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <br><br>
+                    <button class="btn btn-outline-success">Login</button>
+                    <a href="{% url 'home' %}" class="btn btn-outline-primary">Back</a>
+                </form>
+            </div>
+            <br>
+            Not registered? Sign Up <a href="{% url 'register' %}">Here</a>
         </div>
-        <br>
-        <label class="form-label">Password</label>
-        <div class="form-group">
-            <input type="password" class="form-control" name="password">
-        </div>
-        <br><br>
-        <button class="btn btn-outline-success">Login</button>
-        <a href="{% url 'home' %}" class="btn btn-outline-primary">Back</a>
-    </form>
+    </div>
 </div>
-<br>
-Not registered? Sign Up <a href="{% url 'register' %}">Here</a>
+
 
 {% endblock %}
