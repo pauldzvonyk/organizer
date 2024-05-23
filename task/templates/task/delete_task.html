@@ -6,20 +6,28 @@
 {% if user.is_authenticated %}
 {% if user.id == task.author.id %}
 
-
-<h1>Are you sure that you want to delete: {{ task.title }}?</h1>
-
-<div class="form-group">
-    <form method="POST" class="submit_form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <a href="{% url 'task-detail' task.pk %}" class="btn btn-secondary">Back</a>
-        <button class="btn btn-secondary">Delete</button>
-    </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center">Are you sure that you want to delete: {{ task.title }}?</h1>
+            <div class="form-group">
+                <form method="POST" class="submit_form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <a href="{% url 'task-detail' task.pk %}" class="btn btn-outline-primary">Back</a>
+                    <button class="btn btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% else %}
+
 <h2>This is a restricted territory, you are not allowed here!!!</h2>
+
 {% endif %}
+
 {% else %}
 
 You're not allowed here, and you know it!...
