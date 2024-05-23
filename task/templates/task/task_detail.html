@@ -229,7 +229,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" name="subtask_text_10" aria-label="Text input with radio button"
-                       {% if not task.subtask_text_10 %} placeholder="Keep pushing forward, you're nearly there—just one last effort and you'll have completed your task!"
+                       {% if not task.subtask_text_10 %} placeholder="Keep pushing forward, you're nearly there - just one last effort and you'll have completed your task!"
                        {% else %} value="{{ task.subtask_text_10 }}" readonly {% endif %} required>
                 <div class="input-group-text" {% if task.progress == 9 %} style="display: block;" {% else %}
                      style="display: none" {% endif %}>
@@ -261,6 +261,24 @@
         <img src="{{ task.task_images.url }}" width="400" height="300">
         {% endif %}
     </p>
+
+    {% if not task.comments.all %}
+    <h5>This section is for your personal notes and comments.</h5>
+    <h6><a href="{% url 'add_comment' task.pk %}">Add your first comment</a></h6>
+    <hr>
+    {% else %}
+    <h6><a href="{% url 'add_comment' task.pk %}">Add another comment</a></h6><br>
+    {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
+    <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
+    <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a> | <a href="{% url 'delete-comment' comment.pk %}">delete</a>
+
+    <br>
+    {{ comment.body|safe }}
+
+    {% endfor %}
+    <hr>
+    {% endif %}
+
     {% if task.author.profile %}
     <div class="card mb-3">
         <div class="row g-0">
@@ -291,31 +309,10 @@
             </div>
         </div>
     </div>
-    <a href="{% url 'edit_profile_page' task.author.profile.id %}" class="btn btn-sm btn-outline-primary mb-2">Update Your Profile</a>
+    <a href="{% url 'edit_profile_page' task.author.profile.id %}" class="btn btn-sm btn-outline-warning mb-2">Update Your Profile</a>
 
     {% endif %}
     <hr>
-
-    {% if not task.comments.all %}
-    <h5>This section is for your personal notes and comments.</h5>
-    <h6><a href="{% url 'add_comment' task.pk %}">Add your first comment</a></h6>
-    <hr>
-    {% else %}
-    <h6><a href="{% url 'add_comment' task.pk %}">Add another comment</a></h6><br>
-    {% for comment in task.comments.all|dictsortreversed:"comment_date" %}
-    <strong>{{ comment.name }} | {{ comment.comment_date }}</strong>
-    <a href="{% url 'edit-comment' task_pk=task.pk pk=comment.pk %}">edit</a> | <a href="{% url 'delete-comment' comment.pk %}">delete</a>
-
-    <br>
-    {{ comment.body|safe }}
-
-    {% endfor %}
-    <hr>
-    {% endif %}
-
-
-    <br>
-
 
     <div class="row mb-2">
         <div class="col-md-8">
