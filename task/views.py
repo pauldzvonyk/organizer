@@ -128,9 +128,12 @@ class CategoryMixin:
 
 
 class LandingPageView(CategoryMixin, TemplateView):
-    def get(self, request):
-        context = self.get_context_data()
-        return render(request, 'task/home.html', context=context)
+    template_name = 'task/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['email'] = 'pauldzvonyk81@gmail.com'
+        return context
 
 
 class SearchTaskView(CategoryMixin, TemplateView):
