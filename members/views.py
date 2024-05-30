@@ -4,7 +4,7 @@ from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditSettingsForm, ChangePasswordForm, CreateProfileForm, EditProfileForm
-from task.models import Profile
+from task.models import Profile, User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from task.views import CategoryMixin
 
@@ -22,39 +22,35 @@ class CreateProfilePageView(CategoryMixin, CreateView):
         return super().form_valid(form)
 
 
+class ProfilePageView(CategoryMixin, DetailView):
+    model = Profile
+    template_name = 'registration/user_profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self, queryset=None):
+        # Fetch the user by pk provided in the URL and then get the profile
+        user = get_object_or_404(User, pk=self.kwargs['pk'])
+        profile = get_object_or_404(Profile, user=user)
+        return profile
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfilePageView, self).get_context_data(**kwargs)
+        context['current_user'] = self.request.user
+        return context
+
+
 class EditProfilePageView(CategoryMixin, LoginRequiredMixin, generic.UpdateView):
     model = Profile
     form_class = EditProfileForm
     template_name = 'registration/edit_profile_page.html'
 
-    # fields = '__all__'
-
     def get_object(self, queryset=None):
-        # Use the authenticated user's profile for editing
-        return self.request.user.profile
+        # Fetch the profile of the authenticated user
+        return get_object_or_404(Profile, user=self.request.user)
 
     def get_success_url(self):
         # Redirect to the user's profile page after successful form submission
         return reverse_lazy('user_profile', kwargs={'pk': self.request.user.pk})
-
-
-class ProfilePageView(CategoryMixin, DetailView):
-    model = Profile
-    template_name = 'registration/user_profile.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ProfilePageView, self).get_context_data(**kwargs)
-
-        # Get the current user object
-        current_user = self.request.user
-
-        # Query the Profile associated with the current user's pk
-        profile = get_object_or_404(Profile, user=current_user)
-
-        # Pass the profile to the template context
-        context['current_user'] = current_user
-        context['profile'] = profile
-        return context
 
 
 class UserRegistrationView(generic.CreateView):
