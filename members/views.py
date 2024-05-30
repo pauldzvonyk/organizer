@@ -57,7 +57,6 @@ class ProfilePageView(CategoryMixin, DetailView):
         return context
 
 
-
 class UserRegistrationView(generic.CreateView):
     form_class = SignUpForm
     template_name = 'registration/register.html'
