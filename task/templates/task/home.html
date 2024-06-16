@@ -48,7 +48,7 @@
                     <a href="tel:+353852426895" class="btn btn-outline-primary">Phone: +353 (85) 242 6895</a>
                 </div>
             </div>
-            <div class="col-md-8 text-center my-2">
+            <div class="col-md-6 text-center my-2">
                 {% if user.is_authenticated %}
                 <a href="{% url 'all-tasks' %}" class="btn btn-outline-light btn-lg"
                    style="background-color: rgba(255, 0, 0, 0.6)">Go to Tasks...</a>
@@ -56,6 +56,9 @@
                 <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg"
                    style="background-color: rgba(255, 0, 0, 0.6)">Sign Up!</a>
                 {% endif %}
+            </div>
+            <div class="col-md-2">
+                <img src="{% static 'task/images/finger.png' %}" class="img-fluid">
             </div>
 
         </div>
